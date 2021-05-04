@@ -1,0 +1,40 @@
+/* Scroll Component extra styles */
+.menu-item {
+  padding: 0 40px;
+  margin: 5px 10px;
+  user-select: none;
+  cursor: pointer;
+  border: none;
+}
+
+.menu-item-wrapper:focus {
+  outline: none !important;
+}
+
+.menu {
+  margin: 0 -15px;
+}
+
+.menu__actors {
+  max-width: calc(100% - 300px);
+}
+
+.scroll-menu-arrow {
+  cursor: pointer;
+}
+
+.scroll-menu-arrow > svg {
+  display: block;
+}
+
+.scroll-menu-arrow--disabled {
+  visibility: hidden;
+}
+
+.arrow-prev {
+  padding-right: 10px;
+}
+
+.arrow-next {
+  padding-left: 10px;
+}

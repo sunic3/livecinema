@@ -40,7 +40,6 @@ class Actor(BaseModel):
     class Meta:
         verbose_name = 'Актер'
         verbose_name_plural = 'Актеры'
-        ordering = ['name']
 
     def __str__(self):
         return f'{self.pk}: {self.name}'

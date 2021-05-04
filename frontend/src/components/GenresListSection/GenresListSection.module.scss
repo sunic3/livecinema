@@ -1,0 +1,25 @@
+.genresContainer {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 -40px;
+  justify-content: space-between;
+
+  &::after {
+    content: "";
+    flex: auto;
+  }
+
+  .genre {
+    margin: 0 40px 40px;
+
+    .link {
+      color: var(--button-green);
+      text-decoration: none;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

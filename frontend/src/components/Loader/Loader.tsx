@@ -1,13 +1,11 @@
 import React from 'react';
 
-type LoaderProps = {
-  
-}
+import styles from './Loader.module.scss';
 
-const Loader: React.FC<LoaderProps> = () => {
-  return (
-    
+const Loader: React.FC = () => (
+    <div className={styles.loader}>
+      <div className={styles.dot} />
+    </div>
   );
-}
 
 export default Loader;

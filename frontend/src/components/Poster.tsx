@@ -5,7 +5,7 @@ type PosterProps = {
 }
 
 const Poster: React.FC<PosterProps> = ({ poster }) => (
-  <img src={poster || '/movie_default.png'} alt='Постер' />
+  <img style={{ width: '100%', borderRadius: '10px' }} src={poster || '/movie_default.png'} alt='Постер' />
 );
 
 export default Poster;

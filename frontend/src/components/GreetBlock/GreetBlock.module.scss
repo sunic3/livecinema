@@ -1,0 +1,46 @@
+.container {
+  position: relative;
+  margin-top: 20px;
+  background-color: var(--button-blue);
+  border-radius: 10px;
+  padding: 50px;
+
+  .title {
+    font-size: 40px;
+    color: #ffffff;
+    position: relative;
+    z-index: 3;
+    text-shadow: 0.075em 0.08em 0.1em rgba(0, 0, 0, 1);
+
+    @media (max-width: 540px) {
+      font-size: 24px;
+    }
+  }
+
+  .list {
+    list-style-type: "-";
+    color: #ffffff;
+    margin-left: 15px;
+
+    &_item {
+      font-size: 34px;
+      padding-left: 10px;
+      text-shadow: 0.075em 0.08em 0.1em rgba(0, 0, 0, 1);
+      position: relative;
+      z-index: 3;
+
+      @media (max-width: 540px) {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .friends_img {
+    display: block;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    width: 300px;
+    z-index: 1;
+  }
+}

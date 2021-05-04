@@ -1,32 +1,32 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import WbSunnyOutlinedIcon from '@material-ui/icons/WbSunnyOutlined';
-import Brightness2OutlinedIcon from '@material-ui/icons/Brightness2Outlined';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import Toggle from 'react-toggle';
 
-import { Store } from '../../redux/reducer';
+import { AppState } from '../../../redux/store';
 
-import styles from './ThemeButton.module.scss';
+import styles from '../Header.module.scss';
 import { ThemeType } from '../../../interfaces';
-
+import { themeChange } from '../../../redux/theme/actions';
 
 const ThemeButton: React.FC = () => {
-  const theme = useSelector<Store, ThemeType>((state) => state.theme);
+  const theme = useSelector<AppState, ThemeType>((state) => state.theme);
   const dispatch = useDispatch();
 
-  const onClick = () => {
-    dispatch({ type: 'themeChange' });
+  const onChange = () => {
+    dispatch(themeChange);
   };
 
   return (
-    <SvgIcon onClick={onClick}>
-      {
-        theme === 'light' ?
-          <WbSunnyOutlinedIcon className={styles.icon} /> :
-          <Brightness2OutlinedIcon className={styles.icon} />
-      }
-    </SvgIcon>
+    <Toggle
+      defaultChecked={theme === 'dark'}
+      className={styles.themeChangeButton}
+      icons={{
+        checked: <span className={styles.themeChangeButton__icon}>🌜</span>,
+        unchecked: <span className={styles.themeChangeButton__icon}>🌞</span>,
+      }}
+      onChange={onChange}
+    />
   );
 };
 

@@ -1,9 +1,11 @@
 import { BACKEND } from '../constants';
 
-export const createTokenProvider = () => {
-  let token: { accessToken: string, refreshToken: string } | null = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH') || '') || null;
+export type TokenType = { access: string, refresh: string } | null;
+
+const tokenProvider = () => {
+  let token: TokenType = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH') || "null") || null;
   let isUpdating = false;
-  let resolvers = [];
+  let resolvers: ((value: unknown) => void)[] = [];
 
   const getExpirationDate = (jwtToken?: string): number | null => {
     if (!jwtToken) return null;
@@ -20,18 +22,28 @@ export const createTokenProvider = () => {
   };
 
   const checkExpiry = async () => {
-    if (!token) return null;
+    if (!token) return;
 
-    if (isExpired(getExpirationDate(token.accessToken))) {
-      const updateToken = await fetch(`${BACKEND}/api/auth/token/refresh/`, {
+    if (isExpired(getExpirationDate(token.access))) {
+      await fetch(`${BACKEND}/api/auth/token/refresh/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ refresh: token.refreshToken })
-      }).then(r => r.json());
+        body: JSON.stringify({ refresh: token.refresh })
+      }).then(r => r.json()).then(
+        updateToken => {
+          setToken(updateToken);
+          resolvers.forEach(resolver => resolver(updateToken.access));
+        },
+        _ => {
+          setToken(null);
+          resolvers.forEach(resolver => resolver(null));
+        }
+      );
 
-      setToken(updateToken);
+      isUpdating = false;
+      resolvers = [];
     }
-  }
+  };
 
   const getToken = async () => {
     if (isUpdating) {
@@ -42,10 +54,7 @@ export const createTokenProvider = () => {
 
     await checkExpiry();
 
-
-
-
-    return token && token.accessToken;
+    return Promise.resolve(token && token.access);
   };
 
   const isLoggedIn = () => !!token;
@@ -65,7 +74,7 @@ export const createTokenProvider = () => {
     observers.forEach(observer => observer(isLogged));
   };
 
-  const setToken = (newToken: typeof token) => {
+  const setToken = (newToken: TokenType) => {
     if (newToken) {
       localStorage.setItem('REACT_TOKEN_AUTH', JSON.stringify(newToken));
     } else {
@@ -84,3 +93,5 @@ export const createTokenProvider = () => {
     unsubscribe
   };
 };
+
+export default tokenProvider;

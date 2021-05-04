@@ -1,0 +1,91 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 2rem 0;
+  margin: 0 -5%;
+  overflow: hidden;
+}
+
+.dot {
+  position: relative;
+  left: -9999px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: var(--theme-page-text);
+  color: var(--theme-page-text);
+  box-shadow: 9999px 0 0 0 var(--theme-page-text);
+  animation: dotFalling 1s infinite linear;
+  animation-delay: .1s;
+}
+
+.dot::before, .dot::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+
+.dot::before {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: var(--theme-page-text);
+  color: var(--theme-page-text);
+  animation: dotFallingBefore 1s infinite linear;
+  animation-delay: 0s;
+}
+
+.dot::after {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: var(--theme-page-text);
+  color: var(--theme-page-text);
+  animation: dotFallingAfter 1s infinite linear;
+  animation-delay: .2s;
+}
+
+@keyframes dotFalling {
+  0% {
+    box-shadow: 9999px -15px 0 0 rgba(152, 128, 255, 0);
+  }
+  25%,
+  50%,
+  75% {
+    box-shadow: 9999px 0 0 0 var(--theme-page-text);
+  }
+  100% {
+    box-shadow: 9999px 15px 0 0 rgba(152, 128, 255, 0);
+  }
+}
+
+@keyframes dotFallingBefore {
+  0% {
+    box-shadow: 9974px -15px 0 0 rgba(152, 128, 255, 0);
+  }
+  25%,
+  50%,
+  75% {
+    box-shadow: 9974px 0 0 0 var(--theme-page-text);
+  }
+  100% {
+    box-shadow: 9974px 15px 0 0 rgba(152, 128, 255, 0);
+  }
+}
+
+@keyframes dotFallingAfter {
+  0% {
+    box-shadow: 10024px -15px 0 0 rgba(152, 128, 255, 0);
+  }
+  25%,
+  50%,
+  75% {
+    box-shadow: 10024px 0 0 0 var(--theme-page-text);
+  }
+  100% {
+    box-shadow: 10024px 15px 0 0 rgba(152, 128, 255, 0);
+  }
+}

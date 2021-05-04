@@ -1,0 +1,149 @@
+.title__mobile {
+  display: none;
+  padding: 0 15px;
+  font-size: 24px;
+
+  @media (max-width: 540px) {
+    display: block;
+  }
+
+  .title__name {
+    font-weight: 700;
+  }
+
+  .title__age {
+    color: #eee;
+    font-weight: 500;
+    margin-left: 10px;
+  }
+}
+
+.genre {
+  margin-top: 20px;
+  font-size: 14px;
+
+  a {
+    text-decoration: none;
+    color: var(--theme-green-color);
+    margin-right: 10px;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.container {
+  display: block;
+  padding: 0 15px;
+  color: var(--theme-page-text);
+
+  @media (max-width: 540px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left {
+    position: sticky;
+    top: 60px;
+    display: inline-block;
+    padding: 0 10px;
+    width: 250px;
+    margin-right: 25px;
+    vertical-align: top;
+
+    @media (max-width: 540px) {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+      margin-right: 0;
+      top: 20px;
+    }
+  }
+
+  .right {
+    display: inline-block;
+    width: 100%;
+    max-width: calc(100% - 275px);
+
+    @media (max-width: 540px) {
+      display: block;
+      max-width: 100%;
+      position: relative;
+      padding-top: 20px;
+    }
+
+    .title {
+      font-size: 24px;
+
+      > h1 {
+        display: inline-block;
+        margin-bottom: 0;
+      }
+
+      @media (max-width: 540px) {
+        display: none;
+      }
+
+      .title__name {
+        font-weight: 700;
+      }
+
+      .title__age {
+        color: #ccc;
+        margin-left: 10px;
+        font-weight: 400;
+      }
+    }
+
+    .genre {
+      @media (max-width: 540px) {
+        display: none;
+      }
+    }
+
+    .description {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: 400;
+      text-align: justify;
+      color: var(--theme-page-text);
+    }
+
+    .actorList {
+      margin: 20px 0;
+      width: 100%;
+    }
+
+    .movie_navlinks {
+      display: block;
+      margin-top: 30px;
+      white-space: nowrap;
+      overflow-y: auto;
+
+      .movie_navlink {
+        display: inline-block;
+        margin-right: 20px;
+        padding: 5px 8px;
+        border-radius: 10px;
+        background-color: #ccc;
+        color: #000;
+        text-decoration: none;
+        font-size: 16px;
+
+        &__active {
+          background-color: var(--button-green);
+          color: #fff;
+        }
+      }
+    }
+
+    .about {
+      font-size: 18px;
+      text-align: justify;
+      color: var(--theme-page-text);
+      margin-top: 15px;
+      white-space: pre-wrap;
+    }
+  }
+}

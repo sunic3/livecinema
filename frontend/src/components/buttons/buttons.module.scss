@@ -1,12 +1,50 @@
 .button {
   width: 100%;
-  border-radius: 20px;
+  border-radius: 10px;
   color: white;
-  text-align: center;
+  background-color: var(--button-green);
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-transform: uppercase;
+
+  > svg {
+    margin-right: 5px;
+  }
+
+  &.trailer {
+    background-color: var(--button-red);
+  }
+
+  &.review {
+    background-color: var(--button-blue);
+  }
+
+  &.submit {
+    background-color: var(--button-blue);
+  }
+
+  &.watch {
+    background-color: var(--button-watch);
+  }
+
+  &.cancel {
+    background-color: grey;
+  }
+
+  &:disabled {
+    background-color: #999;
+    cursor: default;
+  }
 }
 
 .bigButton {
   max-width: 300px;
-  font-size: 20px;
+  font-size: 16px;
+  font-weight: 500;
   padding: 10px;
+  margin-top: 10px;
 }

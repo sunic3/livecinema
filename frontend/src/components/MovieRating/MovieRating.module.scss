@@ -1,0 +1,25 @@
+.movieRating {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  @media (max-width: 540px) {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .value {
+    font-size: 1.8em;
+    color: var(--button-red);
+  }
+
+  .star {
+    color: var(--button-red);
+    margin-right: 40px;
+  }
+
+  .iconEmpty {
+    color: #cccccc;
+  }
+}

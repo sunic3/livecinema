@@ -1,0 +1,44 @@
+.menu {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: max-height .3s ease-out;
+  background-color: var(--theme-header-bg);
+  z-index: 1011;
+
+  &.show {
+    // Максимальная высота вычисляется вручную
+    max-height: 130px;
+  }
+
+  &__item {
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    color: var(--theme-header-text);
+    border-bottom: 1px solid var(--theme-header-text);
+  }
+
+  &__item:first-child {
+    border-top: 1px solid var(--theme-header-text);
+  }
+
+  &__item:hover {
+    background-color: lightgray;
+    color: var(--theme-header-text);
+  }
+
+  &__item:active {
+    color: var(--theme-header-text);
+  }
+}
+
+.button {
+  cursor: pointer;
+}
+

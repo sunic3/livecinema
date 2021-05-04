@@ -7,7 +7,7 @@ import Loader from '../../components/Loader/Loader';
 import { GenreType, MovieShort } from '../../interfaces';
 import WatchListSection from '../../components/WatchList/WatchListSection';
 
-const GenresPage: React.FC = () => {
+const GenresAllPage: React.FC = () => {
   const [moviesByGenre, setMoviesByGenre] = useState<Array<{
     genre: GenreType;
     movies: MovieShort[] | null;
@@ -15,18 +15,18 @@ const GenresPage: React.FC = () => {
 
   useEffect(() => {
     getGenresReq()
-      .then((data) => {
-        setMoviesByGenre(data.map((genre) => ({ genre, movies: null })));
-        return data;
+      .then((genres) => {
+        setMoviesByGenre(genres.map((genre) => ({ genre, movies: null })));
+        return genres;
       })
-      .then((data) => {
-        data.forEach((genre) => {
-          getMoviesReq({ genre: genre.name }).then((movies) =>
+      .then((genres) => {
+        genres.forEach((genre) => {
+          getMoviesReq({ genre: genre.slug }).then((data) =>
             setMoviesByGenre((prevState) => [
               ...(prevState?.map((state) =>
                 state.genre.id !== genre.id
                   ? state
-                  : { genre: state.genre, movies }
+                  : { genre: state.genre, movies: data.movies }
               ) || []),
             ])
           );
@@ -56,4 +56,4 @@ const GenresPage: React.FC = () => {
   );
 };
 
-export default GenresPage;
+export default GenresAllPage;
