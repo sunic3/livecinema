@@ -1,5 +1,5 @@
 .footer {
-  width: 100%;
+  width: calc(100% - 30px);
   background-color: var(--theme-footer-bg);
   padding: 10px 20px;
   display: flex;
