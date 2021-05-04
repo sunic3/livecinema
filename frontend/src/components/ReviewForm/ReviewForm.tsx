@@ -52,11 +52,14 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ movie, onClose }) => {
         title,
         content,
         permissions: perm,
-      }).then((review) => {
-        dispatch(addReviewAction(review));
-        onClose();
-        history.location.pathname !== `/movie/${movie.slug}/reviews` && history.push(`/movie/${movie.slug}/reviews`)
-      }).catch(err => console.log(err))
+      })
+        .then((review) => {
+          dispatch(addReviewAction(review));
+          onClose();
+          history.location.pathname !== `/movie/${movie.slug}/reviews` &&
+            history.push(`/movie/${movie.slug}/reviews`);
+        })
+        .catch((err) => {})
     );
   };
 

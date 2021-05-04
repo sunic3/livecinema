@@ -25,7 +25,7 @@ const GenrePage: React.FC = () => {
       setGenre(data.data as GenreType);
       setMovies(data.movies);
     });
-  }, []);
+  }, [genreSlug]);
 
   if (!movies) return <Loader />;
 

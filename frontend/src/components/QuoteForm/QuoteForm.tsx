@@ -47,9 +47,10 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ movie, onClose }) => {
         .then((quote) => {
           dispatch(addQuoteAction(quote));
           onClose();
-          history.location.pathname !== `/movie/${movie.slug}/quotes` && history.push(`/movie/${movie.slug}/quotes`)
+          history.location.pathname !== `/movie/${movie.slug}/quotes` &&
+            history.push(`/movie/${movie.slug}/quotes`);
         })
-        .catch((err) => console.log(err))
+        .catch((err) => {})
     );
   };
 

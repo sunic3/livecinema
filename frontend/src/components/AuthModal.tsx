@@ -25,6 +25,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose, form }) => {
     } else if (!open && !logged) {
       onClose();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [logged, open]);
 
   if (!logged) {

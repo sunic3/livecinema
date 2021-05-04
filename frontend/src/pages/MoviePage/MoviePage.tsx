@@ -73,6 +73,7 @@ const MoviePage: React.FC<MoviePageProps> = () => {
         (err) => window.console.log(err)
       )
       .finally(() => setLoading(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [movieSlug, logged]);
 
   if (loading) return <Loader />;

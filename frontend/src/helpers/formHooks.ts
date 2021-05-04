@@ -61,6 +61,7 @@ export const useValidation = (value: string, validations: ValidationType) => {
           break;
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   return {

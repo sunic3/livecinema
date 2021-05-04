@@ -1,5 +1,5 @@
 import React  from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 
@@ -11,7 +11,7 @@ import { openAuthForm } from '../../../redux/auth/actions';
 
 const ProfileButton: React.FC = () => {
   const dispatch = useDispatch()
-  const history = useHistory();
+  // const history = useHistory();
 
   const [logged] = useAuth();
 

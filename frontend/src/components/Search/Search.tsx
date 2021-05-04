@@ -37,6 +37,7 @@ const Search: React.FC<SearchProps> = ({ search, setSearch }) => {
     debouncedValueLogging(value).then((data) => {
       setResults(data);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   useEffect(() => {

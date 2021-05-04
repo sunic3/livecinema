@@ -42,7 +42,6 @@ const MovieRating: React.FC<MovieRatingProps> = ({
           review && dispatch(updateReviews(review));
         })
         .catch((err) => {
-          console.log(err.message);
           Promise.resolve();
         });
       setClicked(false);
@@ -56,7 +55,8 @@ const MovieRating: React.FC<MovieRatingProps> = ({
     } else if (!clicked && !logged) {
       setValue(0);
     }
-  }, [logged, clicked, value]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [logged, clicked, value, movieSlug]);
 
   return (
     <div className={styles.movieRating}>

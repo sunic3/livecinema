@@ -17,6 +17,7 @@ const FooterIcon: React.FC<FooterIconProps> = ({
   <div className={cn(styles.iconWrap, disabled && styles.iconWrap__disabled)}>
     {children}
     {!disabled && link && (
+      // eslint-disable-next-line jsx-a11y/anchor-has-content
       <a
         href={link}
         target="_blank"

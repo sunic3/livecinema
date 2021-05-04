@@ -17,6 +17,7 @@ const AddFriend: React.FC<AddFriendProps> = ({ onAdd, onClose, watcher }) => {
         data.status === 'success' && onAdd(watcher);
         onClose();
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return null;

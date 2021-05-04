@@ -16,7 +16,11 @@ const SearchItem: React.FC<SearchItemProps> = ({
 }) => (
   <div className={styles.result_item}>
     <div className={styles.left}>
-      <img className={styles.poster} src={posterUrl || '/movie_default.png'} />
+      <img
+        className={styles.poster}
+        src={posterUrl || '/movie_default.png'}
+        alt="poster"
+      />
       <div className={styles.info}>
         <h4 className={styles.title}>{title}</h4>
         <h5 className={styles.genres}>{genres.join(', ')}</h5>

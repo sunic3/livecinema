@@ -26,6 +26,7 @@ const QuoteItems: React.FC<QuoteItemsProps> = ({ slug, addQuote }) => {
 
   useEffect(() => {
     dispatch(loadQuotes(slug, logged));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug, logged]);
 
   if (!quotes) return <Loader />;

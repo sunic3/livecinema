@@ -25,6 +25,7 @@ const ReviewItems: React.FC<ReviewItemsProps> = ({ slug, addReview }) => {
 
   useEffect(() => {
     dispatch(loadReviews(slug, logged));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug, logged]);
 
   if (!reviews) return <Loader />;
