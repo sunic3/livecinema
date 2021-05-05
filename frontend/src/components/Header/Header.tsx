@@ -6,7 +6,6 @@ import styles from './Header.module.scss';
 
 import ThemeButton from './ThemeButton/ThemeButton';
 import ProfileButton from './ProfileButton/ProfileButton';
-import MenuButton from './Menu/MenuButton';
 import Logo from './Logo/Logo';
 import Search from '../Search/Search';
 

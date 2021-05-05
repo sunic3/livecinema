@@ -17,13 +17,16 @@ class MovieListView(APIView):
 	def get(self, request):
 		data = {}
 		if 'new' in request.query_params:
-			movies = Movie.objects.order_by('-year')[:10]
+			movies = Movie.objects.order_by('-year')
 		elif 'genre' in request.query_params:
 			genre = Genre.objects.get(slug=request.query_params['genre'])
-			movies = genre.movie_set.all().order_by('-year')[:10]
+			movies = genre.movie_set.all().order_by('-year')
 			data = GenreSerialize(genre).data
 		else:
-			movies = Movie.objects.filter(serial=False).order_by('?')[:10]
+			movies = Movie.objects.filter(serial=False).order_by('?')
+		if 'limit' in request.query_params:
+			data = {'more': len(movies) - int(request.query_params['limit'])}
+			movies = movies[:int(request.query_params['limit'])]
 		serializer = MovieListSerializer(movies, many=True)
 
 		return Response({'data': data, 'movies': serializer.data}, status=status.HTTP_200_OK)

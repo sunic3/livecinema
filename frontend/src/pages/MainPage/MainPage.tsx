@@ -11,8 +11,10 @@ const MainPage: React.FC = () => {
   const [genres, setGenres] = useState<GenreType[] | null>(null);
 
   useEffect(() => {
-    getMoviesReq().then((data) => setMovies(data.movies));
-    getMoviesReq({ new: true }).then((data) => setNewMovies(data.movies));
+    getMoviesReq({ limit: 10 }).then((data) => setMovies(data.movies));
+    getMoviesReq({ new: true, limit: 10 }).then((data) =>
+      setNewMovies(data.movies)
+    );
     getGenresReq().then((data) => setGenres(data));
   }, []);
 
