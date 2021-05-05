@@ -4,4 +4,8 @@
   background-color: var(--theme-page-bg);
   padding-top: 50px;
   margin: 0 auto;
+
+  @media (max-width: 540px) {
+    padding-bottom: 50px;
+  }
 }

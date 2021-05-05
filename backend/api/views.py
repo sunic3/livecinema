@@ -1,6 +1,4 @@
-import time
 from functools import reduce
-from urllib.parse import unquote
 
 from django.db.models import Q
 
@@ -9,7 +7,7 @@ from rest_framework.views import APIView
 from rest_framework import status, permissions
 
 from authentication.models import FriendShip, CustomUser
-from .serializers import MovieListSerializer, MovieCommonSerializer, ReviewListSerializer, CreateReviewListSerializer, \
+from .serializers import MovieListSerializer, MovieCommonSerializer, ReviewListSerializer, \
 	QuoteListSerializer, CreateQuoteListSerializer, WatcherListSerializer, GenreSerialize
 
 from movie.models import Movie, UseService, Review, Mark, Quote, Watcher, Genre
@@ -22,7 +20,7 @@ class MovieListView(APIView):
 			movies = Movie.objects.order_by('-year')[:10]
 		elif 'genre' in request.query_params:
 			genre = Genre.objects.get(slug=request.query_params['genre'])
-			movies = genre.movie_set.all()[:10]
+			movies = genre.movie_set.all().order_by('-year')[:10]
 			data = GenreSerialize(genre).data
 		else:
 			movies = Movie.objects.filter(serial=False).order_by('?')[:10]
@@ -165,7 +163,7 @@ class CreateReview(APIView):
 			review = Review.objects.create(title=request.data['title'], movie=movie, author=request.user,
 										   permissions=request.data['permissions'], content=request.data['content'])
 			review.save()
-			return Response(data=CreateReviewListSerializer(review).data, status=status.HTTP_201_CREATED)
+			return Response(ReviewListSerializer(review, context={'request': request}).data, status=status.HTTP_201_CREATED)
 
 
 class CreateQuote(APIView):

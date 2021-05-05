@@ -48,7 +48,7 @@ const ReviewItem: React.FC<Review> = ({
         </div>
     </div>
     <h1 className={styles.title}>{title}</h1>
-    <ReactMarkdown>{content}</ReactMarkdown>
+    <ReactMarkdown className={styles.markdown}>{content}</ReactMarkdown>
   </div>
 );
 

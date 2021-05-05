@@ -1,0 +1,9 @@
+.menu {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 50px;
+  display: flex;
+  box-shadow: 0 -6px 4px -4px rgba(0, 0, 0, .2);
+  background-color: var(--theme-header-bg);
+}

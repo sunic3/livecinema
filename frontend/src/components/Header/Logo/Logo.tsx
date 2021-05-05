@@ -1,10 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-type LogoProps = {}
+import styles from './Logo.module.scss';
+
+type LogoProps = {};
 
 const Logo: React.FC<LogoProps> = () => (
   <div>
-    <img src='/logo.svg' alt='logo' />
+    <Link to="/">
+      <img src="/logo.svg" alt="logo" className={styles.logo} />
+    </Link>
   </div>
 );
 

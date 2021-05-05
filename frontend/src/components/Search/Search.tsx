@@ -78,9 +78,9 @@ const Search: React.FC<SearchProps> = ({ search, setSearch }) => {
           onBlur={onBlur}
           ref={refInput}
         />
-        {anime ? (
+        {search ? (
           <CloseIcon
-            className={styles.search_icon}
+            className={cn(styles.search_icon, styles.cross)}
             onClick={() => {
               setValue('');
               setAnime(false);
@@ -88,7 +88,7 @@ const Search: React.FC<SearchProps> = ({ search, setSearch }) => {
           />
         ) : (
           <SearchIcon
-            className={styles.search_icon}
+            className={cn(styles.search_icon, styles.loop)}
             onClick={() => setAnime(true)}
           />
         )}

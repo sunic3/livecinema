@@ -7,6 +7,10 @@
   border: none;
 }
 
+.menu-item-wrapper:last-of-type {
+  margin-right: 0;
+}
+
 .menu-item-wrapper:focus {
   outline: none !important;
 }

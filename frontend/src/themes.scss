@@ -1,32 +1,34 @@
 :root {
-  --button-green: #2FC66F;
-  --button-red: #FFB400;
-  --button-blue: #85C1E9;
-  --button-watch: #BB8FCE;
+  --button-green: #2fc66f;
+  --button-red: #ffb400;
+  --button-blue: #85c1e9;
+  --button-watch: #bb8fce;
 
-  --theme-green-color: #27AE60;
+  --theme-green-color: #27ae60;
 }
 
 .light {
-  --theme-color: #A80000;
-  --theme-page-bg: #FFF;
+  --theme-color: #a80000;
+  --theme-page-bg: #fff;
   --theme-header-bg: #fff;
   --theme-page-text: #111;
   --theme-header-text: #000;
   --theme-icon-color: #000;
   --theme-grey-bg: #eee;
   --theme-grey-text: grey;
-  --theme-footer-bg: #85C1E9;
+  --theme-footer-bg: #85c1e9;
+  --theme-header-active-bg: rgba(0, 0, 0, 0.3);
 }
 
 .dark {
-  --theme-color: #0000A8;
+  --theme-color: #0000a8;
   --theme-page-bg: #100e19;
   --theme-header-bg: #1f1b2e;
-  --theme-page-text: #FFF;
+  --theme-page-text: #fff;
   --theme-header-text: #fff;
   --theme-icon-color: #fff;
   --theme-grey-bg: #999;
   --theme-grey-text: #ccc;
   --theme-footer-bg: #1f1b2e;
+  --theme-header-active-bg: #37304d;
 }

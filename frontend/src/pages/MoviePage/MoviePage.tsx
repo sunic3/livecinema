@@ -13,7 +13,7 @@ import styles from './MoviePage.module.scss';
 
 import Poster from '../../components/Poster';
 import BigButton from '../../components/buttons/BigButton';
-import Trailer from '../MainPage/Trailer';
+import Trailer from '../../components/Trailer/Trailer';
 import ActorList from '../../components/actors/ActorList/ActorList';
 import ServiceList from '../../components/Service/ServiceList';
 import ReviewItems from '../../components/Review/ReviewItems';

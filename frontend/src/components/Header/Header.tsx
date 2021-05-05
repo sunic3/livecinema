@@ -11,6 +11,7 @@ import Logo from './Logo/Logo';
 import Search from '../Search/Search';
 
 import { NavType } from '../../interfaces';
+import BottomMenu from '../BottomMenu/BottomMenu';
 
 const NAV_LINKS: NavType[] = [
   {
@@ -51,9 +52,7 @@ const Header: React.FC = () => {
   return (
     <div className={styles.header}>
       <div className={styles.header__container}>
-        {width <= 600 ? (
-          <MenuButton navLinks={NAV_LINKS} />
-        ) : (
+        {width > 540 && (
           <div>
             {NAV_LINKS.map((nav) => (
               <NavLink
@@ -80,6 +79,7 @@ const Header: React.FC = () => {
           <ProfileButton />
         </div>
       </div>
+      {width <= 540 && <BottomMenu />}
     </div>
   );
 };

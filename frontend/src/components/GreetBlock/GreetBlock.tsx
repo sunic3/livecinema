@@ -9,9 +9,9 @@ const GreetBlock: React.FC = () => (
       Добро пожаловать на LIVECINEMA - сервис, на котором вы можете:
     </h1>
     <ul className={styles.list}>
-      <li className={styles.list_item}>Сравнить цены на любимые фильмы</li>
-      <li className={styles.list_item}>Оставить свой обзор на фильм</li>
-      <li className={styles.list_item}>Найти друзей по интересам</li>
+      <li className={styles.list_item}>- Сравнить цены на любимые фильмы</li>
+      <li className={styles.list_item}>- Оставить свой обзор на фильм</li>
+      <li className={styles.list_item}>- Найти друзей по интересам</li>
     </ul>
   </div>
 );

@@ -74,6 +74,15 @@
   .title {
     margin: 5px 10px 20px;
   }
+
+  .markdown {
+    padding-bottom: 20px;
+
+    p {
+      margin-bottom: 1em;
+      text-indent: 20px;
+    }
+  }
 }
 
 .no_reviews {

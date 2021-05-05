@@ -99,8 +99,7 @@ export const loadReviews = (movieSlug: string, logged: boolean) => (
       throw err;
     })
     .then(
-      (data) =>
-        dispatch(
+      (data) => dispatch(
           loadReviewsAction(
             movieSlug,
             logged,

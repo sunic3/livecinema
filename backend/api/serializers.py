@@ -70,30 +70,6 @@ class ServicesSerializer(serializers.ModelSerializer):
         fields = ['id', 'service', 'type', 'link', 'money']
 
 
-class CreateReviewListSerializer(serializers.ModelSerializer):
-    author = CustomUserSerializer(read_only=True)
-    date = serializers.DateField(format="%d.%m.%Y")
-    rating = serializers.SerializerMethodField()
-    type = serializers.SerializerMethodField()
-    id = serializers.SerializerMethodField()
-
-    class Meta:
-        model = Review
-        fields = ['id', 'title', 'author', 'date', 'content', 'rating', 'type']
-
-    def get_rating(self, instance):
-        try:
-            return Mark.objects.get(movie=instance.movie, user=instance.author).value
-        except:
-            return None
-
-    def get_id(self, instance):
-        return 0
-
-    def get_type(self, instance):
-        return 'self'
-
-
 class CreateQuoteListSerializer(serializers.ModelSerializer):
     author = CustomUserSerializer(read_only=True)
     type = serializers.SerializerMethodField()
