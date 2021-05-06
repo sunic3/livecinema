@@ -137,12 +137,14 @@ const MoviePage: React.FC<MoviePageProps> = () => {
               Добавить
             </>
           </BigButton>
-          <BigButton type={BUTTON_TRAILER} onClick={openTrailer}>
-            <>
-              <PlayArrowIcon />
-              Трейлер
-            </>
-          </BigButton>
+          {movie.info.trailer && (
+            <BigButton type={BUTTON_TRAILER} onClick={openTrailer}>
+              <>
+                <PlayArrowIcon />
+                Трейлер
+              </>
+            </BigButton>
+          )}
           {!movie.review && !review && (
             <BigButton type={BUTTON_REVIEW} onClick={openCreateReview}>
               <>
@@ -248,7 +250,7 @@ const MoviePage: React.FC<MoviePageProps> = () => {
           </Switch>
         </div>
       </div>
-      {showTrailer && (
+      {movie.info.trailer && showTrailer && (
         <Trailer src={movie.info.trailer} onClose={closeTrailer} />
       )}
       {showCreateReview && !movie.review && !review && (

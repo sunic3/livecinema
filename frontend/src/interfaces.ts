@@ -24,6 +24,7 @@ export type NavType = {
   id: number;
   title: string;
   href: string;
+  exact?: boolean;
 };
 
 export type GenreType = {
@@ -66,7 +67,7 @@ export interface MovieShort {
 export interface MovieInfo extends MovieShort {
   description: string;
   short_description: string;
-  trailer: string;
+  trailer: string | null;
   age: number;
   director: ActorType;
   actors: ActorType[];

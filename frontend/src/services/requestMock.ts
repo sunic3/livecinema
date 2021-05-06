@@ -148,3 +148,11 @@ export const makeSearchReq: (
   search
     ? fetchResponse(`search/${search}`, { signal })
     : Promise.resolve(null);
+
+export const friendsNotAcceptReq: (
+  token: string
+) => Promise<{ count: number }> = (token) =>
+  fetchResponse('friendsnotaccept', {
+    method: 'GET',
+    headers: { Authorization: `JWT ${token}` },
+  });

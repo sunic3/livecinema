@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import cn from 'classnames';
 
 import styles from './Header.module.scss';
@@ -11,12 +13,14 @@ import Search from '../Search/Search';
 
 import { NavType } from '../../interfaces';
 import BottomMenu from '../BottomMenu/BottomMenu';
+import { AppState } from '../../redux/store';
 
 const NAV_LINKS: NavType[] = [
   {
     id: 1,
     title: 'Что посмотреть',
     href: '/',
+    exact: true,
   },
   {
     id: 2,
@@ -28,16 +32,13 @@ const NAV_LINKS: NavType[] = [
     title: 'Жанры',
     href: '/genres',
   },
-  // {
-  //   id: 4,
-  //   title: 'Режиссеры',
-  //   href: '/directors',
-  // },
 ];
 
 const Header: React.FC = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const [search, setSearch] = useState(false);
+
+  const feeds = useSelector<AppState, number>((state) => state.feed);
 
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
@@ -58,10 +59,13 @@ const Header: React.FC = () => {
                 to={nav.href}
                 className={styles.header__link}
                 activeClassName={styles.header__link_active}
-                exact
+                exact={nav.exact}
                 key={nav.id}
               >
                 {nav.title}
+                {nav.title === 'Лента' && feeds > 0 && (
+                  <span className={styles.feed_span}>•</span>
+                )}
               </NavLink>
             ))}
           </div>

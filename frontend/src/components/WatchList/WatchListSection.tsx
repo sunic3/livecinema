@@ -41,7 +41,7 @@ const WatchListSection: React.FC<WatchListSectionProps> = ({
       {!movies ? (
         <ScrollMenu
           data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((m) => (
-            <Movie movie={null} key={m} />
+            <Movie movie={null} key={m} className={styles.movie} />
           ))}
           wheel={false}
           alignCenter={false}

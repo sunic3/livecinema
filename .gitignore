@@ -3,3 +3,5 @@ frontend/node_modules
 backend/.idea/
 backend/db.sqlite3
 lcenv/
+
+frontend/src/constants.ts

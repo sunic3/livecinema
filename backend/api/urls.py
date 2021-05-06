@@ -15,5 +15,6 @@ urlpatterns = [
     path('genres', views.GenreListView.as_view()),
     path('movie/<str:slug>', views.MovieView.as_view()),
     path('search/<str:query>', views.SearchView.as_view()),
+    path('friendsnotaccept', views.FriendsNotAcceptView.as_view()),
     path('auth/', include('authentication.urls')),
 ]

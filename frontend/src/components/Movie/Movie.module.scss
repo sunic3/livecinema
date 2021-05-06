@@ -1,5 +1,4 @@
 .movie {
-  //width: 200px;
   position: relative;
   border-radius: 10px;
   overflow: hidden;
@@ -83,11 +82,9 @@
 }
 
 .movie_null {
-  width: 200px;
   position: relative;
   border-radius: 10px;
   overflow: hidden;
-  margin-right: 40px;
 
   .back {
     z-index: 2;

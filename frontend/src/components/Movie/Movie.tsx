@@ -17,7 +17,7 @@ type MovieProps = {
 const Movie: React.FC<MovieProps> = ({ movie, className = null, onClick }) => {
   if (!movie) {
     return (
-      <div className={styles.movie_null}>
+      <div className={cn(styles.movie_null, className)}>
         <div className={styles.back}>
           <Poster poster={null} />
         </div>

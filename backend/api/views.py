@@ -1,3 +1,4 @@
+import time
 from functools import reduce
 
 from django.db.models import Q
@@ -166,7 +167,8 @@ class CreateReview(APIView):
 			review = Review.objects.create(title=request.data['title'], movie=movie, author=request.user,
 										   permissions=request.data['permissions'], content=request.data['content'])
 			review.save()
-			return Response(ReviewListSerializer(review, context={'request': request}).data, status=status.HTTP_201_CREATED)
+			return Response(ReviewListSerializer(review, context={'request': request}).data,
+							status=status.HTTP_201_CREATED)
 
 
 class CreateQuote(APIView):
@@ -204,3 +206,11 @@ class SearchView(APIView):
 		movies = list(filter(lambda m: query.lower() in m.title.lower(), Movie.objects.all()))
 
 		return Response(MovieListSerializer(movies, many=True).data, status=status.HTTP_200_OK)
+
+
+class FriendsNotAcceptView(APIView):
+	permission_classes = (permissions.IsAuthenticated,)
+
+	def get(self, request):
+		return Response({'count': len(FriendShip.objects.filter(dester=request.user, status=0))},
+						status=status.HTTP_200_OK)

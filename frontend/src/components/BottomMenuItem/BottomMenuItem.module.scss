@@ -6,6 +6,7 @@
   text-decoration: none;
 
   .item {
+    position: relative;
     padding: 5px;
     display: flex;
     flex-direction: column;
@@ -22,6 +23,15 @@
     .text {
       font-size: 12px;
       color: var(--theme-header-text);
+    }
+
+    .feed_span__bottom {
+      color: red;
+      font-weight: bold;
+      font-size: 32px;
+      position: absolute;
+      top: -12px;
+      right: 0;
     }
   }
 
