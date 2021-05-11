@@ -73,7 +73,7 @@ const MovieRating: React.FC<MovieRatingProps> = ({
         defaultValue={0}
         precision={1}
         icon={<StarRoundedIcon fontSize="large" />}
-        onChange={(_, newValue) => {
+        onChange={(event, newValue) => {
           newValue && setValue(newValue);
           setClicked(true);
         }}

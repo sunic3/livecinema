@@ -2,12 +2,14 @@ import React from 'react';
 import cn from 'classnames';
 
 import styles from './buttons.module.scss';
+
 import {
   BUTTON_CANCEL,
   BUTTON_REVIEW,
   BUTTON_SUBMIT,
   BUTTON_TRAILER,
 } from '../../constants';
+
 import { ButtonType } from '../../interfaces';
 
 type BigButtonProps = {
@@ -52,7 +54,7 @@ const BigButton: React.FC<BigButtonProps> = ({
         styles.button,
         styles.bigButton,
         buttonStyle,
-        className || null
+        className
       )}
       onClick={onClick}
       disabled={disabled}

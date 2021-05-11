@@ -5,7 +5,6 @@
   transform: translate(-50%, -50%);
   background-color: white;
   border-radius: 10px;
-  //background-color: var(--theme-page-bg);
   width: 100%;
   max-width: 400px;
   min-height: 30px;
@@ -17,7 +16,7 @@
   box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
   overflow: hidden;
   padding: 30px 20px;
-  transition: height .3s linear;
+  transition: height 0.3s linear;
 }
 
 .form {
@@ -55,4 +54,3 @@
     }
   }
 }
-

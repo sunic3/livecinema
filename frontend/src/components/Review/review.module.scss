@@ -4,84 +4,80 @@
   overflow: hidden;
   color: var(--theme-page-text);
   margin-bottom: 30px;
+}
 
-  .header {
-    background-color: var(--theme-grey-bg);
-    padding: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.header {
+  background-color: var(--theme-grey-bg);
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    &.self {
-      background-color: var(--button-blue);
-    }
-
-    &.friend {
-      background-color: var(--button-green);
-    }
-
-    .left {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-
-      .img {
-        overflow: hidden;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        margin-right: 10px;
-      }
-
-      .text {
-        display: flex;
-        flex-direction: column;
-
-        .name {
-          font-weight: 500;
-          color: var(--theme-page-text);
-        }
-
-        .date {
-          font-weight: 400;
-          font-size: 12px;
-          color: var(--theme-grey-text);
-        }
-      }
-    }
-
-    .right {
-      display: flex;
-      align-items: center;
-
-      .mark {
-        color: var(--button-red);
-        font-size: 24px;
-        font-weight: 600;
-      }
-
-      .star {
-        color: var(--button-red);
-      }
-
-      .icon {
-        margin-left: 5px;
-        color: var(--theme-page-text);
-      }
-    }
+  &.self {
+    background-color: var(--color-blue);
   }
 
-  .title {
-    margin: 5px 10px 20px;
+  &.friend {
+    background-color: var(--color-green);
   }
+}
 
-  .markdown {
-    padding-bottom: 20px;
+.left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
-    p {
-      margin-bottom: 1em;
-      text-indent: 20px;
-    }
+.avatar {
+  margin-right: 10px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-weight: 500;
+  color: var(--theme-page-text);
+}
+
+.date {
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--theme-grey-text);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.mark {
+  color: var(--color-red);
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.star {
+  color: var(--color-red);
+}
+
+.icon {
+  margin-left: 5px;
+  color: var(--theme-page-text);
+}
+
+.title {
+  margin: 5px 10px 20px;
+}
+
+.markdown {
+  padding-bottom: 20px;
+
+  p {
+    margin-bottom: 1em;
+    text-indent: 20px;
   }
 }
 
@@ -93,7 +89,7 @@
   &_link {
     font-size: 20px;
     font-style: italic;
-    color: var(--button-blue);
+    color: var(--color-blue);
     font-weight: 500;
 
     &:hover {

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 
 import styles from './AuthForm.module.scss';
-import RegistrationForm from './RegistrationForm';
+
 import LoginForm from './LoginForm';
+import RegistrationForm from './RegistrationForm';
 
-type AuthFormProps = {};
-
-const AuthForm: React.FC<AuthFormProps> = () => {
+const AuthForm: React.FC = () => {
   const [showLoginForm, setShowLoginForm] = useState(true);
 
   const onClick = () => {
@@ -40,4 +39,5 @@ const AuthForm: React.FC<AuthFormProps> = () => {
     </div>
   );
 };
+
 export default AuthForm;

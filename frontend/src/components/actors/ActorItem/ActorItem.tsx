@@ -1,18 +1,19 @@
 import React from 'react';
 
+import styles from './ActorItem.module.scss';
+
+import Avatar from '../../Avatar/Avatar';
+
 import { ActorType } from '../../../interfaces';
 
-import styles from './ActorItem.module.scss'
-
 type ActorItemProps = {
-  actor: ActorType
-}
+  actor: ActorType;
+};
 
 const ActorItem: React.FC<ActorItemProps> = ({ actor }) => (
   <div className={styles.actor}>
-    <img src={actor.photo ? `${actor.photo}` : '/photo.jpg'} alt='Фото' />
-    <div>{actor.name}</div>
-    <div className={styles.front} />
+    <Avatar src={actor.photo} mode="large" />
+    <div className={styles.name}>{actor.name}</div>
   </div>
 );
 

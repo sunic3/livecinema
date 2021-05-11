@@ -4,9 +4,9 @@ import styles from './GreetBlock.module.scss';
 
 const GreetBlock: React.FC = () => (
   <div className={styles.container}>
-    <img className={styles.friends_img} src='/friends.png' alt='head' />
+    <img className={styles.friends_img} src="/friends.png" alt="head" />
     <h1 className={styles.title}>
-      Добро пожаловать на LIVECINEMA - сервис, на котором вы можете:
+      Добро пожаловать на LIVECINEMA - сервис, на котором вы сможете:
     </h1>
     <ul className={styles.list}>
       <li className={styles.list_item}>- Сравнить цены на любимые фильмы</li>

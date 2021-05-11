@@ -8,6 +8,7 @@ from rest_framework.views import APIView
 from rest_framework import status, permissions
 
 from authentication.models import FriendShip, CustomUser
+from authentication.serializers import CustomUserSerializer
 from .serializers import MovieListSerializer, MovieCommonSerializer, ReviewListSerializer, \
 	QuoteListSerializer, CreateQuoteListSerializer, WatcherListSerializer, GenreSerialize
 
@@ -48,6 +49,7 @@ class MovieView(APIView):
 
 		if request.user.is_authenticated:
 			data['review'] = Review.objects.filter(movie=data['info'], author=request.user).exists()
+			data['watched'] = Watcher.objects.filter(user=request.user, movie=data['info']).exists()
 
 			try:
 				mark = Mark.objects.get(user=request.user, movie=data['info'])
@@ -57,6 +59,7 @@ class MovieView(APIView):
 		else:
 			data['rating'] = 0
 			data['review'] = False
+			data['watched'] = False
 
 		serializer = MovieCommonSerializer(data, context={'request': request})
 		return Response(serializer.data)
@@ -103,10 +106,9 @@ class WatcherListView(APIView):
 			friends = list(map(lambda f: f.dester, FriendShip.objects.filter(sender=request.user))) + list(
 				map(lambda f: f.sender, FriendShip.objects.filter(dester=request.user)))
 			people = Watcher.objects.filter(user__in=friends, movie=movie) | Watcher.objects.filter(
-				movie=movie).exclude(user=request.user)
+				movie=movie)
 		else:
 			people = Watcher.objects.filter(movie=movie)
-		print(people)
 		serializer = WatcherListSerializer(people, many=True, context={'request': request})
 
 		return Response(serializer.data)
@@ -214,3 +216,86 @@ class FriendsNotAcceptView(APIView):
 	def get(self, request):
 		return Response({'count': len(FriendShip.objects.filter(dester=request.user, status=0))},
 						status=status.HTTP_200_OK)
+
+
+class FriendshipView(APIView):
+	permission_classes = (permissions.IsAuthenticated,)
+
+	def get(self, request):
+		users = list(map(lambda f: f.sender, FriendShip.objects.filter(dester=request.user, status=0)))
+
+		return Response(CustomUserSerializer(users, many=True).data,
+						status=status.HTTP_200_OK)
+
+
+class changeFriendship(APIView):
+	permission_classes = (permissions.IsAuthenticated,)
+
+	def post(self, request):
+		try:
+			f = FriendShip.objects.get(dester=request.user, sender=CustomUser.objects.get(id=request.data['id']))
+			f.status = request.data['status']
+			f.save()
+			return Response({'status': 'OK'}, status=status.HTTP_200_OK)
+		except:
+			return Response({'status': 'ERROR'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class feedsView(APIView):
+	permission_classes = (permissions.IsAuthenticated,)
+
+	def get(self, request):
+		friends = list(map(lambda f: f.dester, FriendShip.objects.filter(sender=request.user, status=1))) + list(
+			map(lambda f: f.sender, FriendShip.objects.filter(dester=request.user, status=1)))
+		quotes = list(map(lambda q: {
+			'type': 'quote',
+			'data': {
+				'id': q.id,
+				'user': CustomUserSerializer(q.author).data,
+				'movie': {'slug': q.movie.slug, 'title': q.movie.title},
+				'date': q.date},
+			'content': q.content
+		}, Quote.objects.filter(Q(permissions=0) | Q(permissions=1), author__in=friends)))
+		reviews = list(map(lambda r: {
+			'type': 'review',
+			'data': {
+				'id': r.id,
+				'user': CustomUserSerializer(r.author).data,
+				'movie': {'slug': r.movie.slug, 'title': r.movie.title},
+				'date': r.date},
+			'content': r.content
+		}, Review.objects.filter(Q(permissions=0) | Q(permissions=1), author__in=friends)))
+		views = list(map(lambda v: {
+			'type': 'view',
+			'data': {
+				'id': v.id,
+				'user': CustomUserSerializer(v.user).data,
+				'movie': {'slug': v.movie.slug, 'title': v.movie.title},
+				'date': v.date},
+			'content': ''
+		}, Watcher.objects.filter(user__in=friends)))
+		marks = list(map(lambda m: {
+			'type': 'mark',
+			'data': {
+				'id': m.id,
+				'user': CustomUserSerializer(m.user).data,
+				'movie': {'slug': m.movie.slug, 'title': m.movie.title},
+				'date': m.date
+			},
+			'content': str(m.value)
+		}, Mark.objects.filter(user__in=friends)))
+		feeds = sorted(views + marks + quotes + reviews, key=lambda i: i['data']['date'], reverse=True)
+		return Response(feeds, status=status.HTTP_200_OK)
+
+class addWatcherView(APIView):
+	permission_classes = (permissions.IsAuthenticated,)
+
+	def post(self, request):
+		movie = Movie.objects.get(slug=request.data['movie'])
+		try:
+			Watcher.objects.get(user=request.user, movie=movie)
+		except:
+			watcher = Watcher.objects.create(user=request.user, movie=movie)
+			watcher.save()
+
+		return Response({'status': 'OK'}, status=status.HTTP_200_OK)

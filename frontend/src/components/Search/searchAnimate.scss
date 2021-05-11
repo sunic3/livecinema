@@ -3,19 +3,19 @@
 }
 .searchBlock-enter-active {
   width: 100%;
-  transition: width .3s ease;
+  transition: width 0.3s ease;
 }
 .searchBlock-enter-done {
   width: 100%;
-  transition: width .3s ease;
+  transition: width 0.3s ease;
 }
 .searchBlock-exit {
   width: 100%;
-  transition: width .3s ease;
+  transition: width 0.3s ease;
 }
 .searchBlock-exit-active {
   width: 40px;
-  transition: width .3s ease;
+  transition: width 0.3s ease;
 }
 .searchBlock-exit-done {
   width: 40px;

@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
+
 import { authFetch } from '../../helpers/authHelper';
+
 import { addFriendReq } from '../../services/requestMock';
+
 import { Watcher } from '../../interfaces';
 
 type AddFriendProps = {

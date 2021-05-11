@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import cn from 'classnames';
-
 import styles from './Header.module.scss';
 
-import ThemeButton from './ThemeButton/ThemeButton';
-import ProfileButton from './ProfileButton/ProfileButton';
-import Logo from './Logo/Logo';
+import Logo from '../Logo/Logo';
 import Search from '../Search/Search';
+import ThemeButton from './ThemeButton';
+import ProfileButton from './ProfileButton';
+import BottomMenu from '../BottomMenu/BottomMenu';
+
+import { AppState } from '../../redux/store';
 
 import { NavType } from '../../interfaces';
-import BottomMenu from '../BottomMenu/BottomMenu';
-import { AppState } from '../../redux/store';
 
 const NAV_LINKS: NavType[] = [
   {

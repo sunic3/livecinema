@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
+
+import Loader from '../../components/Loader/Loader';
+import MovieList from '../../components/MovieList/MovieList';
 
 import { getGenresReq, getMoviesReq } from '../../services/requestMock';
-import Loader from '../../components/Loader/Loader';
 
 import { GenreType, MovieShort } from '../../interfaces';
-import WatchListSection from '../../components/WatchList/WatchListSection';
 
 const GenresAllPage: React.FC = () => {
   const [moviesByGenre, setMoviesByGenre] = useState<Array<{
@@ -38,20 +38,15 @@ const GenresAllPage: React.FC = () => {
 
   return (
     <>
-      <Switch>
-        <Route path="/genres" exact>
-          {moviesByGenre
-            .filter((mdb) => mdb.movies === null || mdb.movies.length > 0)
-            .map((mbd) => (
-              <WatchListSection
-                title={mbd.genre.name}
-                movies={mbd.movies}
-                key={mbd.genre.id}
-              />
-            ))}
-        </Route>
-        <Route path="/genres/:genre">genre</Route>
-      </Switch>
+      {moviesByGenre
+        .filter((mdb) => mdb.movies === null || mdb.movies.length > 0)
+        .map((mbd) => (
+          <MovieList
+            title={mbd.genre.name}
+            movies={mbd.movies}
+            key={mbd.genre.id}
+          />
+        ))}
     </>
   );
 };

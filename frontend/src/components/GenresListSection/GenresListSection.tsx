@@ -1,8 +1,10 @@
 import React from 'react';
 
 import styles from './GenresListSection.module.scss';
-import { GenreType } from '../../interfaces';
+
 import Genre from './Genre';
+
+import { GenreType } from '../../interfaces';
 
 type GenresListSectionProps = {
   genres: GenreType[] | null;

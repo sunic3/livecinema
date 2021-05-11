@@ -4,10 +4,10 @@ import React  from 'react';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 
 import { useDispatch } from 'react-redux';
-import { logout, useAuth } from '../../../helpers/authHelper';
+import { logout, useAuth } from '../../helpers/authHelper';
 
-import styles from '../Header.module.scss';
-import { openAuthForm } from '../../../redux/auth/actions';
+import styles from './Header.module.scss';
+import { openAuthForm } from '../../redux/auth/actions';
 
 const ProfileButton: React.FC = () => {
   const dispatch = useDispatch()

@@ -5,29 +5,29 @@
   justify-content: space-between;
 
   &::after {
-    content: "";
+    content: '';
     flex: auto;
   }
 
   @media (max-width: 540px) {
     margin: 0 -10px;
   }
+}
 
-  .genre {
-    margin: 0 40px 40px;
+.genre {
+  margin: 0 40px 40px;
 
-    @media (max-width: 540px) {
-      margin: 0 10px 20px;
-    }
+  @media (max-width: 540px) {
+    margin: 0 10px 20px;
+  }
+}
 
-    .link {
-      color: var(--button-green);
-      text-decoration: none;
-      cursor: pointer;
+.link {
+  color: var(--color-green);
+  text-decoration: none;
+  cursor: pointer;
 
-      &:hover {
-        text-decoration: underline;
-      }
-    }
+  &:hover {
+    text-decoration: underline;
   }
 }

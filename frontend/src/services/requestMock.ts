@@ -5,7 +5,10 @@ import {
   Quote,
   Watcher,
   GenreType,
+  User,
+  FeedType,
 } from '../interfaces';
+
 import { BACKEND } from '../constants';
 
 export const fetchResponse = async <T>(url: string, init?: {}): Promise<T> =>
@@ -155,4 +158,43 @@ export const friendsNotAcceptReq: (
   fetchResponse('friendsnotaccept', {
     method: 'GET',
     headers: { Authorization: `JWT ${token}` },
+  });
+
+export const friendshipReq: (token: string) => Promise<User[]> = (token) =>
+  fetchResponse('friendship', {
+    method: 'GET',
+    headers: { Authorization: `JWT ${token}` },
+  });
+
+export const changeFriendShipReq: (
+  token: string,
+  id: number,
+  status: number
+) => Promise<{ status: string }> = (token, id, status) =>
+  fetchResponse('changefriendship', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `JWT ${token}`,
+    },
+    body: JSON.stringify({ id, status }),
+  });
+
+export const feedsReq: (token: string) => Promise<FeedType[]> = (token) =>
+  fetchResponse('feeds', {
+    method: 'GET',
+    headers: { Authorization: `JWT ${token}` },
+  });
+
+export const addWatcherReq: (
+  token: string,
+  movie: string
+) => Promise<{ status: string }> = (token, movie) =>
+  fetchResponse('addwatcher', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `JWT ${token}`,
+    },
+    body: JSON.stringify({ movie }),
   });

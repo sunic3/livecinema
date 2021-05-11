@@ -1,0 +1,60 @@
+.friendship {
+  width: 100%;
+}
+
+.feeds {
+  display: flex;
+  flex-direction: row;
+  align-items: self-start;
+}
+
+.feeds_filter {
+  width: 250px;
+  position: sticky;
+  top: 60px;
+
+  &_label {
+    color: var(--theme-page-text);
+  }
+
+  @media (max-width: 540px) {
+    display: none;
+  }
+}
+
+.feeds_items {
+  width: 100%;
+}
+
+.check {
+  color: var(--color-green) !important;
+
+  &:checked {
+    color: var(--color-green) !important;
+  }
+}
+
+.mobile {
+  &_item {
+    display: inline-block;
+    margin-right: 20px;
+    padding: 5px 8px;
+    border-radius: 10px;
+    background-color: #ccc;
+    color: #000;
+    font-size: 16px;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    &__active {
+      color: white;
+      background-color: var(--color-green);
+    }
+  }
+
+  @media (min-width: 541px) {
+    display: none;
+  }
+}

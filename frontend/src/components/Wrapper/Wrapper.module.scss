@@ -2,12 +2,28 @@
   width: 100%;
   max-width: 1140px;
   margin: 0 auto;
-  padding: 0 15px 80px;
+  padding: 30px 15px 80px;
   position: relative;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 50px);
 
   @media (max-width: 540px) {
     min-height: calc(100vh - 109px);
     padding-bottom: 109px;
+  }
+}
+
+.error {
+  font-weight: 400;
+  text-align: center;
+  color: var(--theme-page-text);
+
+  .p {
+    margin: 60px 0 20px;
+    font-size: 34px;
+  }
+
+  .reload {
+    color: var(--color-green);
+    cursor: pointer;
   }
 }

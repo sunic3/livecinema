@@ -3,12 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './review.module.scss';
 
-import { Review } from '../../interfaces';
-import ReviewItem from './ReviewItem';
-import { AppState } from '../../redux/store';
 import Loader from '../Loader/Loader';
+import ReviewItem from './ReviewItem';
+
+import { AppState } from '../../redux/store';
 import { loadReviews } from '../../redux/reviews/actions';
+
 import { useAuth } from '../../helpers/authHelper';
+
+import { Review } from '../../interfaces';
 
 type ReviewItemsProps = {
   slug: string;
@@ -34,7 +37,7 @@ const ReviewItems: React.FC<ReviewItemsProps> = ({ slug, addReview }) => {
     return (
       <>
         <span className={styles.no_reviews}>
-          Кажется, никто еще добавил обзор на этот фильм.{' '}
+          Кажется, никто еще не добавил обзор на этот фильм.{' '}
         </span>
         <span className={styles.no_reviews_link} onClick={addReview}>
           Будьте первым!

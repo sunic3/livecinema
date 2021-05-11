@@ -1,7 +1,9 @@
+import datetime
 import re
 from transliterate import translit
 
 from django.db import models
+from django.utils import timezone
 
 from authentication.models import CustomUser
 
@@ -157,6 +159,7 @@ class Mark(BaseModel):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, verbose_name='Фильм')
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name='Юзер')
     value = models.IntegerField(default=0, verbose_name='Рейтинг')
+    date = models.DateField(auto_now_add=True, null=True)
 
     class Meta:
         verbose_name = 'Оценка'
@@ -164,6 +167,13 @@ class Mark(BaseModel):
 
     def __str__(self):
         return f'{self.movie} by {self.user}'
+
+    def save(self, *args, **kwargs):
+        if not self.date:
+            self.date = timezone.now()
+
+        super(Mark, self).save(*args, **kwargs)
+
 
 
 class Watcher(BaseModel):

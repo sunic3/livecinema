@@ -6,6 +6,7 @@ import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import styles from './Movie.module.scss';
 
 import Poster from '../Poster';
+
 import { MovieShort } from '../../interfaces';
 
 type MovieProps = {

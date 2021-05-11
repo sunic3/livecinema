@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import BigButton from '../buttons/BigButton';
 
 import styles from './AuthForm.module.scss';
-import { authUser } from '../../services/requestMock';
-import { login } from '../../helpers/authHelper';
-import { useInput } from '../../helpers/formHooks';
-import Input from './Input';
+
+import BigButton from '../buttons/BigButton';
+
 import { closeAuthForm } from '../../redux/auth/actions';
 
-type LoginFormProps = {};
+import { login } from '../../helpers/authHelper';
+import { useInput } from '../../helpers/formHooks';
 
-const LoginForm: React.FC<LoginFormProps> = () => {
+import Input from './Input';
+
+import { authUser } from '../../services/requestMock';
+
+const LoginForm: React.FC = () => {
   const {
     value: username,
     isDirty: usernameDirty,
@@ -35,7 +38,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
   });
   const [error, setError] = useState(false);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const onSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -44,7 +47,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
       (data) => {
         if (data.access && data.refresh) {
           login(data);
-          dispatch(closeAuthForm())
+          dispatch(closeAuthForm());
         } else {
           setError(true);
           setUsernameDirty(false);

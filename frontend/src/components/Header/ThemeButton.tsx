@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Toggle from 'react-toggle';
 
-import { AppState } from '../../../redux/store';
+import { AppState } from '../../redux/store';
 
-import styles from '../Header.module.scss';
-import { ThemeType } from '../../../interfaces';
-import { themeChange } from '../../../redux/theme/actions';
+import styles from './Header.module.scss';
+import { ThemeType } from '../../interfaces';
+import { themeChange } from '../../redux/theme/actions';
 
 const ThemeButton: React.FC = () => {
   const theme = useSelector<AppState, ThemeType>((state) => state.theme);

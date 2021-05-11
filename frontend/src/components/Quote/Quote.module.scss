@@ -1,60 +1,56 @@
 .quote {
   margin-bottom: 20px;
+}
 
-  .header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-bottom: 10px;
-    color: var(--theme-page-text);
+.header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 10px;
+  color: var(--theme-page-text);
 
-    &_avatar {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      overflow: hidden;
-      margin-right: 5px;
-    }
+  &_avatar {
+    margin-right: 5px;
+  }
+}
 
-    .author {
-      font-weight: 700;
-      margin-right: 5px;
-      color: var(--theme-page-text);
+.author {
+  font-weight: 700;
+  margin-right: 5px;
+  color: var(--theme-page-text);
 
-      &.self {
-        color: var(--button-blue);
-      }
-
-      &.friend {
-        color: var(--button-green);
-      }
-    }
-
-    .icon {
-      font-size: 1rem;
-      margin-left: 5px;
-      color: var(--theme-page-text);
-    }
+  &.self {
+    color: var(--color-blue);
   }
 
-  .content {
-    padding: 20px;
-    font-family: 'Caveat', cursive;
-    font-weight: 400;
-    font-size: 24px;
-
-    .body {
-      font-family: inherit;
-      white-space: pre-wrap;
-      color: var(--theme-page-text);
-    }
-
-    .hero {
-      text-align: right;
-      font-family: inherit;
-      color: var(--theme-page-text);
-    }
+  &.friend {
+    color: var(--color-green);
   }
+}
+
+.icon {
+  font-size: 1rem;
+  margin-left: 5px;
+  color: var(--theme-page-text);
+}
+
+.content {
+  padding: 20px;
+  font-family: 'Caveat', cursive;
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.body {
+  font-family: inherit;
+  white-space: pre-wrap;
+  color: var(--theme-page-text);
+}
+
+.hero {
+  text-align: right;
+  font-family: inherit;
+  color: var(--theme-page-text);
 }
 
 .no_quotes {
@@ -65,7 +61,7 @@
   &_link {
     font-size: 20px;
     font-style: italic;
-    color: var(--button-blue);
+    color: var(--color-blue);
     font-weight: 500;
 
     &:hover {

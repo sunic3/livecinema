@@ -10,7 +10,7 @@ type InputProps = {
   placeholder?: string;
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onFocus?: () => void,
+  onFocus?: () => void;
   isDirty?: boolean;
   valid?: boolean;
 };
@@ -23,7 +23,7 @@ const Input: React.FC<InputProps> = ({
   value,
   onChange,
   onFocus,
-  isDirty= false,
+  isDirty = false,
   valid = false,
 }) => (
   <input

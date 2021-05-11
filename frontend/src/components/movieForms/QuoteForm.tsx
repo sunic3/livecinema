@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Select } from '@material-ui/core';
 
-import styles from './QuoteForm.module.scss';
+import styles from './movieForms.module.scss';
 
 import Input from '../AuthForm/Input';
 import BigButton from '../buttons/BigButton';
@@ -56,8 +56,9 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ movie, onClose }) => {
 
   return (
     <div className={styles.form}>
-      <h2 className={styles.title}>
-        Добавьте киноцитату для фильма <span>"{movie.title}"</span>
+      <h2>
+        Добавьте киноцитату для фильма{' '}
+        <span className={styles.title_span}>"{movie.title}"</span>
       </h2>
       <form noValidate onSubmit={onSubmit}>
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}

@@ -29,7 +29,7 @@
   position: relative;
 
   &_active {
-    color: green;
+    color: var(--color-green);
   }
 
   .feed_span {

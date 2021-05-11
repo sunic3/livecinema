@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { makeSearchReq } from '../services/requestMock';
 import { makeRequestWithAbort } from './makeRequestWithAbort';
 import { MovieShort } from '../interfaces';

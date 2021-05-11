@@ -8,18 +8,18 @@
     justify-content: center;
     text-align: center;
   }
+}
 
-  .value {
-    font-size: 1.8em;
-    color: var(--button-red);
-  }
+.value {
+  font-size: 1.8em;
+  color: var(--color-red);
+}
 
-  .star {
-    color: var(--button-red);
-    margin-right: 40px;
-  }
+.star {
+  color: var(--color-red);
+  margin-right: 40px;
+}
 
-  .iconEmpty {
-    color: #cccccc;
-  }
+.iconEmpty {
+  color: #cccccc;
 }

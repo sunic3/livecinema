@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
-import { Select } from '@material-ui/core';
+import TextareaMarkdownEditor from 'react-textarea-markdown-editor';
 
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import TextareaMarkdownEditor from 'react-textarea-markdown-editor';
+import { Select } from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
-import md from '../../helpers/md';
 
-import styles from './ReviewForm.module.scss';
+import styles from './movieForms.module.scss';
 
-import { useInput } from '../../helpers/formHooks';
 import Input from '../AuthForm/Input';
 import BigButton from '../buttons/BigButton';
-import { authFetch } from '../../helpers/authHelper';
-import { createReviewReq } from '../../services/requestMock';
+
 import { addReviewAction } from '../../redux/reviews/actions';
+
+import { authFetch } from '../../helpers/authHelper';
+import { useInput } from '../../helpers/formHooks';
+import md from '../../helpers/md';
+
+import { createReviewReq } from '../../services/requestMock';
 
 type ReviewFormProps = {
   movie: {
@@ -64,9 +67,10 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ movie, onClose }) => {
   };
 
   return (
-    <div className={styles.reviewForm}>
-      <h2 className={styles.title}>
-        Напишите рецензию на фильм <span>"{movie.title}"</span>
+    <div className={styles.form}>
+      <h2>
+        Напишите рецензию на фильм{' '}
+        <span className={styles.title_span}>"{movie.title}"</span>
       </h2>
       <form noValidate onSubmit={onSubmit}>
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}

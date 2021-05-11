@@ -17,6 +17,7 @@ import Header from './components/Header/Header';
 import Wrapper from './components/Wrapper/Wrapper';
 import MainPage from './pages/MainPage/MainPage';
 import MoviePage from './pages/MoviePage/MoviePage';
+import FeedPage from './pages/FeedPage/FeedPage';
 import GenresAllPage from './pages/GenresAllPage/GenresAllPage';
 import GenrePage from './pages/GenrePage/GenrePage';
 import Footer from './components/Footer/Footer';
@@ -41,7 +42,7 @@ const App: React.FC = (props) => {
           authFetch()
             .then((token) => friendsNotAcceptReq(token))
             .then((data) => dispatch(feedChange(data.count))),
-        5000
+        50000
       );
     }
 
@@ -62,6 +63,9 @@ const App: React.FC = (props) => {
             </Route>
             <Route path="/genres" exact>
               <GenresAllPage />
+            </Route>
+            <Route path="/feed" exact>
+              <FeedPage />
             </Route>
             <Route path="/genres/:genreSlug" exact>
               <GenrePage />

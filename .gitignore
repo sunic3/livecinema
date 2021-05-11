@@ -5,6 +5,7 @@ backend/db.sqlite3
 lcenv/
 
 */__pycache__/*
+backend/movie/migrations/
 backend/backend/settings.py
 
 frontend/src/constants.ts

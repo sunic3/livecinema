@@ -1,12 +1,12 @@
-import Modal from '@material-ui/core/Modal';
 import React from 'react';
+import Modal from '@material-ui/core/Modal';
 
 import styles from './Trailer.module.scss';
 
 type TrailerProps = {
-  src: string,
-  onClose: () => void
-}
+  src: string;
+  onClose: () => void;
+};
 
 const Trailer: React.FC<TrailerProps> = ({ src, onClose }) => (
   <Modal open={true} onClose={onClose}>

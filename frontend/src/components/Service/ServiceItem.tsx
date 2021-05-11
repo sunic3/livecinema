@@ -1,7 +1,8 @@
 import React from 'react';
-import { ServiceType } from '../../interfaces';
 
 import styles from './ServiceList.module.scss';
+
+import { ServiceType } from '../../interfaces';
 
 type ServiceProps = {
   service: ServiceType;
@@ -29,18 +30,13 @@ const ServiceItem: React.FC<ServiceProps> = ({
 
   return (
     <div className={styles.service}>
-      <div className={styles.service__name}>
-        <img src={`${logo}`} alt={name} />
+      <div className={styles.name}>
+        <img className={styles.icon} src={`${logo}`} alt={name} />
         {name}
       </div>
-      <div className={styles.service__price}>{price}</div>
+      <div className={styles.price}>{price}</div>
       {/* eslint-disable-next-line jsx-a11y/control-has-associated-label,jsx-a11y/anchor-has-content */}
-      <a
-        rel="noreferrer"
-        className={styles.service__link}
-        href={link}
-        target="_blank"
-      />
+      <a rel="noreferrer" className={styles.link} href={link} target="_blank" />
     </div>
   );
 };

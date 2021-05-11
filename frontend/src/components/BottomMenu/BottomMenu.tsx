@@ -1,21 +1,28 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import LiveTvIcon from '@material-ui/icons/LiveTv';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 
 import styles from './BottomMenu.module.scss';
-import BottomMenuItem from '../BottomMenuItem/BottomMenuItem';
+
 import { AppState } from '../../redux/store';
+
+import BottomMenuItem from '../BottomMenuItem/BottomMenuItem';
 
 const BottomMenu: React.FC = () => {
   const feeds = useSelector<AppState, number>((state) => state.feed);
 
   return (
     <div className={styles.menu}>
-      <BottomMenuItem href="/" exact icon={<LiveTvIcon />} title="Фильмы" />
       <BottomMenuItem
-        href="/lenta"
+        href="/"
+        exact
+        icon={<HomeOutlinedIcon />}
+        title="Главная"
+      />
+      <BottomMenuItem
+        href="/feed"
         exact
         notes={feeds > 0}
         icon={
@@ -36,6 +43,6 @@ const BottomMenu: React.FC = () => {
       />
     </div>
   );
-}
+};
 
 export default BottomMenu;

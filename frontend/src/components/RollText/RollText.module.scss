@@ -1,25 +1,23 @@
-.container {
-  .text {
-    display: -webkit-box;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-height: 88px;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    color: var(--theme-page-text);
+.text {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 88px;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  color: var(--theme-page-text);
 
-    &.show {
-      max-height: none;
-      -webkit-line-clamp: unset;
-    }
+  &.show {
+    max-height: none;
+    -webkit-line-clamp: unset;
   }
+}
 
-  .btn {
-    float: right;
-    color: var(--theme-green-color);
-    font-weight: 500;
-    font-size: 14px;
-    margin-top: 10px;
-    cursor: pointer;
-  }
+.btn {
+  float: right;
+  color: var(--theme-green-color);
+  font-weight: 500;
+  font-size: 14px;
+  margin-top: 10px;
+  cursor: pointer;
 }

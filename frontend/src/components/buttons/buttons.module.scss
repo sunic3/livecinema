@@ -2,7 +2,7 @@
   width: 100%;
   border-radius: 10px;
   color: white;
-  background-color: var(--button-green);
+  background-color: var(--color-green);
   outline: none;
   border: none;
   display: flex;
@@ -11,24 +11,20 @@
   cursor: pointer;
   text-transform: uppercase;
 
-  > svg {
-    margin-right: 5px;
-  }
-
   &.trailer {
-    background-color: var(--button-red);
+    background-color: var(--color-red);
   }
 
   &.review {
-    background-color: var(--button-blue);
+    background-color: var(--color-blue);
   }
 
   &.submit {
-    background-color: var(--button-blue);
+    background-color: var(--color-blue);
   }
 
   &.watch {
-    background-color: var(--button-watch);
+    background-color: var(--color-watch);
   }
 
   &.cancel {

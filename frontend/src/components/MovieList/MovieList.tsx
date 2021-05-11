@@ -3,10 +3,11 @@ import { useHistory } from 'react-router-dom';
 
 import ScrollMenu from 'react-horizontal-scrolling-menu';
 
-import styles from './WatchListSection.module.scss'
+import styles from './MovieList.module.scss';
 import '../../helpers/ScrollMenu.scss';
 
 import Movie from '../Movie/Movie';
+
 import { ArrowLeft, ArrowRight } from '../arrows';
 
 import { MovieShort } from '../../interfaces';
@@ -16,10 +17,7 @@ type WatchListSectionProps = {
   movies: MovieShort[] | null;
 };
 
-const WatchListSection: React.FC<WatchListSectionProps> = ({
-  title,
-  movies,
-}) => {
+const MovieList: React.FC<WatchListSectionProps> = ({ title, movies }) => {
   const history = useHistory();
 
   const onSelect = (key: string | number | null) => {
@@ -71,4 +69,4 @@ const WatchListSection: React.FC<WatchListSectionProps> = ({
   );
 };
 
-export default WatchListSection;
+export default MovieList;

@@ -6,6 +6,7 @@ import LockOpenOutlinedIcon from '@material-ui/icons/LockOpenOutlined';
 
 import styles from './Quote.module.scss';
 import { Quote } from '../../interfaces';
+import Avatar from '../Avatar/Avatar';
 
 type QuoteItemProps = {
   quote: Quote;
@@ -28,10 +29,10 @@ const QuoteItem: React.FC<QuoteItemProps> = ({
         </>
       ) : (
         <>
-          <img
+          <Avatar
+            src={author.photo}
+            mode="small"
             className={styles.header_avatar}
-            src={author.photo || '/photo.jpg'}
-            alt="author"
           />
           <span
             className={cn(

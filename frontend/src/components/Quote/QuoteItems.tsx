@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import styles from './Quote.module.scss'
+import styles from './Quote.module.scss';
 
-import QuoteItem from './QuoteItem';
 import { loadQuotes } from '../../redux/quotes/actions';
 import { AppState } from '../../redux/store';
+
 import Loader from '../Loader/Loader';
+import QuoteItem from './QuoteItem';
+
 import { useAuth } from '../../helpers/authHelper';
 
 import { Quote } from '../../interfaces';
@@ -35,7 +37,7 @@ const QuoteItems: React.FC<QuoteItemsProps> = ({ slug, addQuote }) => {
     return (
       <>
         <span className={styles.no_quotes}>
-          Кажется, никто еще добавил киноцитат из этого фильма.{' '}
+          Кажется, никто еще не добавил киноцитат из этого фильма.{' '}
         </span>
         <span className={styles.no_quotes_link} onClick={addQuote}>
           Будьте первым!

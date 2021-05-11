@@ -39,7 +39,7 @@ export type ActorType = {
   id: number;
   name: string;
   slug?: string;
-  photo?: string;
+  photo: string | null;
 };
 
 export type ServiceType = {
@@ -78,9 +78,11 @@ export interface Movie {
   services: ServiceType[];
   rating: number;
   review: boolean;
+  watched: boolean;
 }
 
 export interface User {
+  id: number;
   username: string;
   first_name: string | null;
   photo: string | null;
@@ -113,7 +115,39 @@ export interface Watcher {
   movies: {
     all: number;
     match: number;
-  }
+  };
   rating: number;
   status: number;
 }
+
+interface Feed {
+  type: string;
+  data: {
+    id: number;
+    user: User;
+    movie: {
+      slug: string;
+      title: string;
+    };
+    date: string;
+  };
+  content: string;
+}
+
+export interface FeedView extends Feed {
+  type: 'view';
+}
+
+export interface FeedRating extends Feed {
+  type: 'mark';
+}
+
+export interface FeedReview extends Feed {
+  type: 'review';
+}
+
+export interface FeedQuote extends Feed {
+  type: 'quote';
+}
+
+export type FeedType = FeedView | FeedRating | FeedReview | FeedQuote;

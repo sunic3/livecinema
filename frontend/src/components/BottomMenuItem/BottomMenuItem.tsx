@@ -15,7 +15,7 @@ const BottomMenuItem: React.FC<BottomMenuItemProps> = ({
   href,
   exact = false,
   icon,
-  notes=false,
+  notes = false,
   title,
 }) => (
   <NavLink

@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import WatchListSection from '../../components/WatchList/WatchListSection';
+
+import MovieList from '../../components/MovieList/MovieList';
 import GreetBlock from '../../components/GreetBlock/GreetBlock';
 import GenresListSection from '../../components/GenresListSection/GenresListSection';
-import { GenreType, MovieShort } from '../../interfaces';
+
 import { getMoviesReq, getGenresReq } from '../../services/requestMock';
+
+import { GenreType, MovieShort } from '../../interfaces';
 
 const MainPage: React.FC = () => {
   const [movies, setMovies] = useState<MovieShort[] | null>(null);
@@ -21,8 +24,8 @@ const MainPage: React.FC = () => {
   return (
     <>
       <GreetBlock />
-      <WatchListSection title="Что посмотреть" movies={movies} />
-      <WatchListSection title="Новинки" movies={newMovies} />
+      <MovieList title="Что посмотреть" movies={movies} />
+      <MovieList title="Новинки" movies={newMovies} />
       <GenresListSection genres={genres} />
     </>
   );

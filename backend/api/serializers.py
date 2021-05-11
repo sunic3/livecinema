@@ -157,6 +157,9 @@ class WatcherListSerializer(serializers.ModelSerializer):
         if not self.context['request'].user.is_authenticated:
             return 0
 
+        if instance.user == self.context['request'].user:
+            return -1
+
         if FriendShip.objects.filter(sender=self.context['request'].user,
                                      dester=instance.user).exists() or \
                 FriendShip.objects.filter(
@@ -191,3 +194,4 @@ class MovieCommonSerializer(serializers.Serializer):
     services = ServicesSerializer(read_only=True, many=True)
     rating = serializers.IntegerField()
     review = serializers.BooleanField()
+    watched = serializers.BooleanField()

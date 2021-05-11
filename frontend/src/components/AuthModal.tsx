@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Modal from '@material-ui/core/Modal';
 import { useDispatch } from 'react-redux';
+
 import { useAuth } from '../helpers/authHelper';
 import { openAuthForm } from '../redux/auth/actions';
 

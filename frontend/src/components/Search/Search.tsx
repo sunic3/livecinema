@@ -9,9 +9,12 @@ import './searchAnimate.scss';
 import { CSSTransition } from 'react-transition-group';
 
 import styles from './Search.module.scss';
-import useDebouncedFunction from '../../helpers/debounce';
-import { MovieShort } from '../../interfaces';
+
 import SearchItems from './SearchItems';
+
+import useDebouncedFunction from '../../helpers/debounce';
+
+import { MovieShort } from '../../interfaces';
 
 type SearchProps = {
   search: boolean;
@@ -52,8 +55,6 @@ const Search: React.FC<SearchProps> = ({ search, setSearch }) => {
     setTimeout(() => setFocus(false), 100);
     !value && setAnime(false);
   };
-
-  // if (!search) return <SearchIcon onClick={() => setSearch(true)} />;
 
   return (
     <CSSTransition

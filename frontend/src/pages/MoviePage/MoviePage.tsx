@@ -5,6 +5,7 @@ import AddIcon from '@material-ui/icons/Add';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import CreateIcon from '@material-ui/icons/Create';
 import FormatQuoteIcon from '@material-ui/icons/FormatQuote';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getMovie } from '../../services/requestMock';
@@ -21,8 +22,8 @@ import { authFetch, useAuth } from '../../helpers/authHelper';
 import MovieRating from '../../components/MovieRating/MovieRating';
 import QuoteItems from '../../components/Quote/QuoteItems';
 import AuthModal from '../../components/AuthModal';
-import QuoteForm from '../../components/QuoteForm/QuoteForm';
-import ReviewForm from '../../components/ReviewForm/ReviewForm';
+import QuoteForm from '../../components/movieForms/QuoteForm';
+import ReviewForm from '../../components/movieForms/ReviewForm';
 import WatcherItems from '../../components/Watcher/WatcherItems';
 import Loader from '../../components/Loader/Loader';
 
@@ -32,6 +33,8 @@ import { AppState } from '../../redux/store';
 
 import { BUTTON_REVIEW, BUTTON_TRAILER } from '../../constants';
 import { Movie } from '../../interfaces';
+import MobileMenuScroll from '../../components/MobileMenuScroll/MobileMenuScroll';
+import WatcherForm from '../../components/WatcherForm/WatcherForm';
 
 type MoviePageProps = {};
 
@@ -46,10 +49,11 @@ const MoviePage: React.FC<MoviePageProps> = () => {
 
   const [movie, setMovie] = useState<Movie>();
   const [loading, setLoading] = useState(true);
+
   const [showTrailer, setShowTrailer] = useState(false);
   const [showCreateReview, setShowCreateReview] = useState(false);
   const [showAddQuote, setShowAddQuote] = useState(false);
-  // const [showSetWatch, setShowSetWatch] = useState(false);
+  const [showAddWatcher, setShowAddWatcher] = useState(false);
 
   useEffect(() => {
     dispatch(resetReviewsAction);
@@ -68,10 +72,7 @@ const MoviePage: React.FC<MoviePageProps> = () => {
         }
         throw err;
       })
-      .then(
-        (data) => setMovie(data),
-        (err) => window.console.log(err)
-      )
+      .then((data) => setMovie(data))
       .finally(() => setLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [movieSlug, logged]);
@@ -79,7 +80,7 @@ const MoviePage: React.FC<MoviePageProps> = () => {
   if (loading) return <Loader />;
 
   if (!movie) {
-    return <p>no movie</p>;
+    throw new Error('no movie');
   }
 
   const openTrailer = () => {
@@ -106,13 +107,23 @@ const MoviePage: React.FC<MoviePageProps> = () => {
     setShowAddQuote(false);
   };
 
-  // const openSetWatch = () => {
-  //   setShowSetWatch(true);
-  // };
-  //
-  // const closeSetWatch = () => {
-  //   setShowSetWatch(false);
-  // };
+  const onAddWatcher = () => {
+    setMovie(
+      (prevState) =>
+        ({
+          ...prevState,
+          watched: true,
+        } as Movie)
+    );
+  };
+
+  const openAddWatcher = () => {
+    setShowAddWatcher(true);
+  };
+
+  const closeAddWatcher = () => {
+    setShowAddWatcher(false);
+  };
 
   return (
     <section>
@@ -130,17 +141,26 @@ const MoviePage: React.FC<MoviePageProps> = () => {
 
       <div className={styles.container}>
         <div className={styles.left}>
-          <Poster poster={movie.info.posterUrl} />
-          <BigButton>
-            <>
-              <AddIcon />
-              Добавить
-            </>
-          </BigButton>
+          {movie.info.posterUrl && <Poster poster={movie.info.posterUrl} />}
+          {movie.watched ? (
+            <BigButton>
+              <>
+                <VisibilityIcon className={styles.left_menu_icon} />
+                Просмотрен
+              </>
+            </BigButton>
+          ) : (
+            <BigButton onClick={openAddWatcher}>
+              <>
+                <AddIcon className={styles.left_menu_icon} />
+                Добавить
+              </>
+            </BigButton>
+          )}
           {movie.info.trailer && (
             <BigButton type={BUTTON_TRAILER} onClick={openTrailer}>
               <>
-                <PlayArrowIcon />
+                <PlayArrowIcon className={styles.left_menu_icon} />
                 Трейлер
               </>
             </BigButton>
@@ -148,14 +168,14 @@ const MoviePage: React.FC<MoviePageProps> = () => {
           {!movie.review && !review && (
             <BigButton type={BUTTON_REVIEW} onClick={openCreateReview}>
               <>
-                <CreateIcon />
+                <CreateIcon className={styles.left_menu_icon} />
                 Рецензия
               </>
             </BigButton>
           )}
           <BigButton type={BUTTON_REVIEW} onClick={openAddQuote}>
             <>
-              <FormatQuoteIcon />
+              <FormatQuoteIcon className={styles.left_menu_icon} />
               Цитаты
             </>
           </BigButton>
@@ -180,7 +200,7 @@ const MoviePage: React.FC<MoviePageProps> = () => {
           <div className={styles.description}>
             {movie.info.short_description}
           </div>
-          <div className={styles.actorList}>
+          <div className={styles.section}>
             <h2>Режиссер и Актеры</h2>
             <div style={{ width: '100%' }}>
               <ActorList
@@ -197,53 +217,76 @@ const MoviePage: React.FC<MoviePageProps> = () => {
               <ServiceList data={movie.services} />
             </div>
           ) : null}
-          <div className={styles.movie_navlinks}>
-            <NavLink
-              to={`/movie/${movieSlug}`}
-              className={styles.movie_navlink}
-              activeClassName={styles.movie_navlink__active}
-              exact={true}
-            >
-              О фильме
-            </NavLink>
-            <NavLink
-              to={`/movie/${movieSlug}/reviews`}
-              className={styles.movie_navlink}
-              activeClassName={styles.movie_navlink__active}
-            >
-              Обзоры
-            </NavLink>
-            <NavLink
-              to={`/movie/${movieSlug}/quotes`}
-              className={styles.movie_navlink}
-              activeClassName={styles.movie_navlink__active}
-            >
-              Киноцитаты
-            </NavLink>
-            <NavLink
-              to={`/movie/${movieSlug}/viewers`}
-              className={styles.movie_navlink}
-              activeClassName={styles.movie_navlink__active}
-            >
-              Зрители
-            </NavLink>
-          </div>
+          <MobileMenuScroll
+            data={[
+              {
+                id: 0,
+                children: (
+                  <NavLink
+                    to={`/movie/${movieSlug}`}
+                    className={styles.movie_navlink}
+                    activeClassName={styles.movie_navlink__active}
+                    exact={true}
+                  >
+                    О фильме
+                  </NavLink>
+                ),
+              },
+              {
+                id: 1,
+                children: (
+                  <NavLink
+                    to={`/movie/${movieSlug}/reviews`}
+                    className={styles.movie_navlink}
+                    activeClassName={styles.movie_navlink__active}
+                  >
+                    Обзоры
+                  </NavLink>
+                ),
+              },
+              {
+                id: 2,
+                children: (
+                  <NavLink
+                    to={`/movie/${movieSlug}/quotes`}
+                    className={styles.movie_navlink}
+                    activeClassName={styles.movie_navlink__active}
+                  >
+                    Киноцитаты
+                  </NavLink>
+                ),
+              },
+              {
+                id: 3,
+                children: (
+                  <NavLink
+                    to={`/movie/${movieSlug}/viewers`}
+                    className={styles.movie_navlink}
+                    activeClassName={styles.movie_navlink__active}
+                  >
+                    Зрители
+                  </NavLink>
+                ),
+              },
+            ]}
+            margin={20}
+          />
           <Switch>
             <Route path={`/movie/${movieSlug}`} exact={true}>
               <div className={styles.about}>{movie.info.description}</div>
             </Route>
             <Route path={`/movie/${movieSlug}/reviews`}>
-              <div className={styles.actorList}>
+              <div className={styles.section}>
                 <ReviewItems slug={movieSlug} addReview={openCreateReview} />
               </div>
             </Route>
             <Route path={`/movie/${movieSlug}/quotes`}>
-              <div className={styles.actorList}>
+              <div className={styles.section}>
                 <QuoteItems slug={movieSlug} addQuote={openAddQuote} />
               </div>
             </Route>
             <Route path={`/movie/${movieSlug}/viewers`}>
-              <div className={styles.actorList}>
+              <div className={styles.section}>
                 <WatcherItems slug={movieSlug} />
               </div>
             </Route>
@@ -275,17 +318,18 @@ const MoviePage: React.FC<MoviePageProps> = () => {
           }
         />
       )}
-      {/* {showSetWatch && ( */}
-      {/*  <AuthModal */}
-      {/*    onClose={closeSetWatch} */}
-      {/*    form={ */}
-      {/*      <QuoteForm */}
-      {/*        movie={{ title: movie.info.title, slug: movieSlug }} */}
-      {/*        onClose={closeSetWatch} */}
-      {/*      /> */}
-      {/*    } */}
-      {/*  /> */}
-      {/* )} */}
+      {showAddWatcher && (
+        <AuthModal
+          onClose={closeAddWatcher}
+          form={
+            <WatcherForm
+              onAdd={onAddWatcher}
+              onClose={closeAddWatcher}
+              movieSlug={movieSlug}
+            />
+          }
+        />
+      )}
     </section>
   );
 };

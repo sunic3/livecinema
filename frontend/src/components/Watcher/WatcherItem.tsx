@@ -4,11 +4,15 @@ import AddIcon from '@material-ui/icons/Add';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 
 import styles from './Watcher.module.scss';
+
+import Avatar from '../Avatar/Avatar';
 import BigButton from '../buttons/BigButton';
-import { Watcher } from '../../interfaces';
-import { plural } from '../../helpers/plural';
 import AuthModal from '../AuthModal';
 import AddFriend from './AddFriend';
+
+import { plural } from '../../helpers/plural';
+
+import { Watcher } from '../../interfaces';
 
 type WatcherItemProps = {
   watcher: Watcher;
@@ -30,11 +34,7 @@ const WatcherItem: React.FC<WatcherItemProps> = ({ watcher, addFriend }) => {
     <>
       <div className={styles.watcher}>
         <div className={styles.user}>
-          <img
-            className={styles.avatar}
-            src={watcher.user.photo || '/photo.jpg'}
-            alt="Аватар"
-          />
+          <Avatar src={watcher.user.photo} />
           <div className={styles.user_info}>
             <div className={styles.name}>
               {watcher.user.first_name || watcher.user.username.split('@')[0]}
@@ -44,7 +44,7 @@ const WatcherItem: React.FC<WatcherItemProps> = ({ watcher, addFriend }) => {
                 watcher.movies.all,
                 []
               )}`}
-              {watcher.movies.match && ` (${watcher.movies.match} совп.)`}
+              {watcher.movies.match !== 0 && ` (${watcher.movies.match} совп.)`}
             </div>
             {watcher.rating ? (
               <div className={styles.rating}>
