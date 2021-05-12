@@ -75,7 +75,6 @@ const ProfilePage: React.FC = () => {
 
     authFetch()
       .then((token) => updateProfileReq(token, formData))
-      .then((data) => console.log(data))
       .finally(() => setIsDirty(false));
   };
 
