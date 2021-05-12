@@ -11,7 +11,7 @@
   box-shadow: 0 6px 4px -4px rgba(0, 0, 0, .2);
 }
 
-.header__container {
+.container {
   width: 100%;
   max-width: 1140px;
   display: flex;
@@ -20,7 +20,11 @@
   padding: 0 15px;
 }
 
-.header__link {
+.links {
+  white-space: nowrap;
+}
+
+.link {
   text-decoration: none;
   margin-right: 20px;
   color: var(--theme-header-text);
@@ -42,7 +46,7 @@
   }
 }
 
-.header_icons {
+.icons {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -54,7 +58,7 @@
     cursor: pointer;
   }
 
-  &__search {
+  &_search {
     width: 100%;
   }
 }

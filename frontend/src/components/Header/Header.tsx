@@ -51,13 +51,13 @@ const Header: React.FC = () => {
 
   return (
     <div className={styles.header}>
-      <div className={styles.header__container}>
+      <div className={styles.container}>
         {width > 540 && (
-          <div>
+          <div className={styles.links}>
             {NAV_LINKS.map((nav) => (
               <NavLink
                 to={nav.href}
-                className={styles.header__link}
+                className={styles.link}
                 activeClassName={styles.header__link_active}
                 exact={nav.exact}
                 key={nav.id}
@@ -73,8 +73,8 @@ const Header: React.FC = () => {
         {!search && <Logo />}
         <div
           className={cn(
-            styles.header_icons,
-            search ? styles.header_icons__search : null
+            styles.icons,
+            search ? styles.icons_search : null
           )}
         >
           <Search search={search} setSearch={setSearch} />
