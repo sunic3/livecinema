@@ -213,7 +213,7 @@ const MoviePage: React.FC<MoviePageProps> = () => {
             </div>
           </div>
           {movie.services.length !== 0 ? (
-            <div className={styles.whereWatch}>
+            <div className={styles.section}>
               <h2>Где посмотреть</h2>
               <ServiceList data={movie.services} />
             </div>

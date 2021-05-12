@@ -58,7 +58,7 @@ const Header: React.FC = () => {
               <NavLink
                 to={nav.href}
                 className={styles.link}
-                activeClassName={styles.header__link_active}
+                activeClassName={styles.link_active}
                 exact={nav.exact}
                 key={nav.id}
               >

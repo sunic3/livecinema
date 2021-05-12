@@ -42,9 +42,17 @@ const App: React.FC = (props) => {
         () =>
           authFetch()
             .then((token) => friendsNotAcceptReq(token))
-            .then((data) => dispatch(feedChange(data.count))),
+            .then((data) => {
+              dispatch(
+                feedChange(
+                  window.location.pathname === '/feed' ? 0 : data.count
+                )
+              );
+            }),
         1000
       );
+    } else {
+      dispatch(feedChange(0));
     }
 
     return () => {

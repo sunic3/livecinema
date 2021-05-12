@@ -18,6 +18,7 @@ import { openAuthForm } from '../../redux/auth/actions';
 import { feedsReq } from '../../services/requestMock';
 
 import { FeedType } from '../../interfaces';
+import { feedChange } from '../../redux/feed/actions';
 
 const FeedPage: React.FC = () => {
   const [logged] = useAuth();
@@ -36,8 +37,6 @@ const FeedPage: React.FC = () => {
   };
 
   const updateFeeds = () => {
-    setLoading(true);
-
     authFetch()
       .then((token) => feedsReq(token))
       .then((data) => setFeeds(data))
@@ -45,7 +44,14 @@ const FeedPage: React.FC = () => {
       .finally(() => setLoading(false));
   };
 
-  useEffect(updateFeeds, [logged]);
+  useEffect(() => {
+    dispatch(feedChange(0))
+  }, [])
+
+  useEffect(() => {
+    setLoading(true);
+    updateFeeds();
+  }, [logged]);
 
   if (loading) return <Loader />;
 
