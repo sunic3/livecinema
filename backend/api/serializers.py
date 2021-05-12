@@ -76,7 +76,7 @@ class CreateQuoteListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Quote
-        fields = ['id', 'hero', 'author', 'content', 'type']
+        fields = ['id', 'hero', 'author', 'content', 'type', 'permissions']
 
     def get_type(self, instance):
         return 'self'

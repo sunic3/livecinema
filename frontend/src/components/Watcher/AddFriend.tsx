@@ -17,6 +17,7 @@ const AddFriend: React.FC<AddFriendProps> = ({ onAdd, onClose, watcher }) => {
     authFetch()
       .then((token) => addFriendReq(watcher.user.username, token))
       .then((data) => {
+        console.log(data);
         data.status === 'OK' && onAdd(watcher);
         onClose();
       });

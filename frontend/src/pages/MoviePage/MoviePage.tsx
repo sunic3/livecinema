@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Route, Switch, useParams, NavLink } from 'react-router-dom';
+import {
+  Link,
+  Route,
+  Switch,
+  useParams,
+  NavLink,
+  Redirect,
+} from 'react-router-dom';
 
 import AddIcon from '@material-ui/icons/Add';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
@@ -273,7 +280,7 @@ const MoviePage: React.FC<MoviePageProps> = () => {
             margin={20}
           />
           <Switch>
-            <Route path={`/movie/${movieSlug}`} exact={true}>
+            <Route path={`/movie/${movieSlug}`} exact>
               <div className={styles.about}>{movie.info.description}</div>
             </Route>
             <Route path={`/movie/${movieSlug}/reviews`}>
@@ -291,6 +298,11 @@ const MoviePage: React.FC<MoviePageProps> = () => {
                 <WatcherItems slug={movieSlug} />
               </div>
             </Route>
+            <Route
+              render={() => (
+                <Redirect to={{ pathname: `/movie/${movieSlug}` }} />
+              )}
+            />
           </Switch>
         </div>
       </div>

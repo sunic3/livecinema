@@ -12,6 +12,7 @@ import styles from './review.module.scss';
 import Avatar from '../Avatar/Avatar';
 
 import { Review } from '../../interfaces';
+import { getUsername } from '../../helpers/getInfo';
 
 const ReviewItem: React.FC<Review> = ({
   title,
@@ -33,7 +34,7 @@ const ReviewItem: React.FC<Review> = ({
         <Avatar src={photo} className={styles.avatar} />
         <div className={styles.text}>
           <div className={styles.name}>
-            {first_name || username.split('@')[0]}
+            {type === 'self' ? 'Вы' : getUsername(first_name, username)}
           </div>
           <div className={styles.date}>{date}</div>
         </div>
