@@ -8,7 +8,7 @@ from rest_framework.views import APIView
 from rest_framework import status, permissions
 
 from authentication.models import FriendShip, CustomUser
-from authentication.serializers import CustomUserSerializer
+from authentication.serializers import CustomUserSerializer, CustomUserFullSerializer
 from .serializers import MovieListSerializer, MovieCommonSerializer, ReviewListSerializer, \
 	QuoteListSerializer, CreateQuoteListSerializer, WatcherListSerializer, GenreSerialize
 
@@ -298,4 +298,27 @@ class addWatcherView(APIView):
 			watcher = Watcher.objects.create(user=request.user, movie=movie)
 			watcher.save()
 
+		return Response({'status': 'OK'}, status=status.HTTP_200_OK)
+
+
+class profileView(APIView):
+	permission_classes = (permissions.IsAuthenticated,)
+
+	def get(self, request):
+		return Response(CustomUserFullSerializer(request.user).data, status=status.HTTP_200_OK)
+
+	def post(self, request):
+		serializer = CustomUserFullSerializer(request.user, data=request.data)
+		print(request.data)
+		if serializer.is_valid():
+			print('valid')
+			user = serializer.save()
+			print(user)
+		# user.first_name = request.data['first_name']
+		# user.last_name = request.data['last_name']
+		# if 'avatar' in request.data:
+		# 	user.photo = request.data['avatar']
+		# user.save()
+		else:
+			print('not valid')
 		return Response({'status': 'OK'}, status=status.HTTP_200_OK)

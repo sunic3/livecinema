@@ -174,7 +174,7 @@ class WatcherListSerializer(serializers.ModelSerializer):
 
         if self.context['request'].user.is_authenticated:
             for movie in user_watchs:
-                if Watcher.objects.filter(movie=movie.movie, user=self.context['request'].user).exists:
+                if Watcher.objects.filter(movie=movie.movie, user=self.context['request'].user).exists():
                     match += 1
 
         return {

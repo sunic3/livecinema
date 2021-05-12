@@ -85,6 +85,7 @@ const RegistrationForm: React.FC = () => {
         isDirty={usernameDirty}
         valid={usernameValid()}
         placeholder="Е-мэйл"
+        errorText="Неверный формат"
       />
       <Input
         inputType="password"
@@ -92,8 +93,9 @@ const RegistrationForm: React.FC = () => {
         value={password}
         onChange={onPasswordChange}
         isDirty={passwordDirty}
-        valid={passwordValid() || (password2Dirty && password !== password2)}
+        valid={passwordValid()}
         placeholder="Пароль"
+        errorText="Короткий пароль"
       />
       <Input
         inputType="password"
@@ -101,14 +103,15 @@ const RegistrationForm: React.FC = () => {
         value={password2}
         onChange={onPassword2Change}
         isDirty={password2Dirty}
-        valid={password !== password2}
+        valid={password !== password2 && password2.length !== 0}
         placeholder="Повторите пароль"
+        errorText="Пароли не совпадают"
       />
       <BigButton
         type="submit"
         disabled={usernameValid() || passwordValid() || password !== password2}
       >
-        Войти
+        Зарегистрироваться
       </BigButton>
     </form>
   );

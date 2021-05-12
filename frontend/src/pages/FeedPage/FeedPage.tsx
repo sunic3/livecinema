@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import cn from 'classnames';
 
 import { FormControlLabel, Checkbox } from '@material-ui/core';
@@ -10,16 +11,19 @@ import { authFetch, useAuth } from '../../helpers/authHelper';
 import Friendship from '../../components/Friendship/Friendship';
 import FeedItem from '../../components/FeedItem/FeedItem';
 
-import { feedsReq } from '../../services/requestMock';
-
-import { FeedType } from '../../interfaces';
 import Loader from '../../components/Loader/Loader';
 import MobileMenuScroll from '../../components/MobileMenuScroll/MobileMenuScroll';
 
+import { openAuthForm } from '../../redux/auth/actions';
+import { feedsReq } from '../../services/requestMock';
+
+import { FeedType } from '../../interfaces';
+
 const FeedPage: React.FC = () => {
   const [logged] = useAuth();
+  const dispatch = useDispatch();
 
-  const [feeds, setFeeds] = useState<FeedType[] | null>(null);
+  const [feeds, setFeeds] = useState<FeedType[]>([]);
   const [loading, setLoading] = useState(true);
 
   const [checkViews, setCheckViews] = useState(true);
@@ -27,7 +31,13 @@ const FeedPage: React.FC = () => {
   const [checkQuotes, setCheckQuotes] = useState(true);
   const [checkReviews, setCheckReviews] = useState(true);
 
+  const onClick = () => {
+    dispatch(openAuthForm());
+  };
+
   const updateFeeds = () => {
+    setLoading(true);
+
     authFetch()
       .then((token) => feedsReq(token))
       .then((data) => setFeeds(data))
@@ -35,15 +45,28 @@ const FeedPage: React.FC = () => {
       .finally(() => setLoading(false));
   };
 
-  useEffect(updateFeeds, []);
+  useEffect(updateFeeds, [logged]);
 
   if (loading) return <Loader />;
 
-  if (!logged) return <div>You are not logged!</div>;
-
-  if (!feeds)
+  if (!logged)
     return (
-      <div className={styles.hello}>Ищите друзей на страницах фильмов и</div>
+      <div className={styles.text}>
+        Здесь будут появляться обновления от ваших друзей (просмотры, оценки и
+        т.д.)
+        <br />
+        <span className={styles.text_span} onClick={onClick}>
+          Авторизуйтесь
+        </span>{' '}
+        и ищите друзей на страницах фильмов
+      </div>
+    );
+
+  if (feeds.length === 0)
+    return (
+      <div className={styles.text}>
+        Ищите друзей на страницах фильмов и следите за их обновлениями
+      </div>
     );
 
   return (

@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
-import styles from './Genre.module.scss';
+import styles from './GenrePage.module.scss';
+
+import Loader from '../../components/Loader/Loader';
+import Movie from '../../components/Movie/Movie';
+
+import { plural } from '../../helpers/plural';
+import { getMoviesReq } from '../../services/requestMock';
 
 import { GenreType, MovieShort } from '../../interfaces';
-import Loader from '../../components/Loader/Loader';
-import { getMoviesReq } from '../../services/requestMock';
-import { plural } from '../../helpers/plural';
-import Movie from '../../components/Movie/Movie';
 
 const GenrePage: React.FC = () => {
   const { genreSlug } = useParams<{ genreSlug: string }>();

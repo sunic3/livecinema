@@ -17,24 +17,18 @@ import { authUser } from '../../services/requestMock';
 const LoginForm: React.FC = () => {
   const {
     value: username,
-    isDirty: usernameDirty,
     onChange: onUsernameChange,
     setIsDirty: setUsernameDirty,
-    checkValid: usernameValid,
   } = useInput('', {
     isEmpty: true,
-    emailMatch: true,
   });
   const {
     value: password,
-    isDirty: passwordDirty,
     setIsDirty: setPasswordDirty,
     onChange: onPasswordChange,
     onError: onPasswordError,
-    checkValid: passwordValid,
   } = useInput('', {
     isEmpty: true,
-    minLength: 8,
   });
   const [error, setError] = useState(false);
 
@@ -76,8 +70,7 @@ const LoginForm: React.FC = () => {
         onChange={onUsernameChange}
         onFocus={() => setError(false)}
         placeholder="Е-мэйл"
-        isDirty={usernameDirty}
-        valid={usernameValid()}
+        errorText="Неверный формат"
       />
       <Input
         inputType="password"
@@ -86,10 +79,9 @@ const LoginForm: React.FC = () => {
         onChange={onPasswordChange}
         onFocus={() => setError(false)}
         placeholder="Пароль"
-        isDirty={passwordDirty}
-        valid={passwordValid()}
+        errorText="Короткий пароль"
       />
-      <BigButton type="submit" disabled={usernameValid() || passwordValid()}>
+      <BigButton type="submit" disabled={!username || !password}>
         Войти
       </BigButton>
     </form>

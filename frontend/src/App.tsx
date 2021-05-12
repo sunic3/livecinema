@@ -26,12 +26,13 @@ import { friendsNotAcceptReq } from './services/requestMock';
 
 import { ThemeType } from './interfaces';
 import { feedChange } from './redux/feed/actions';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 
 const App: React.FC = (props) => {
   const theme = useSelector<AppState, ThemeType>((state) => state.theme);
   const [logged] = useAuth();
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
@@ -42,7 +43,7 @@ const App: React.FC = (props) => {
           authFetch()
             .then((token) => friendsNotAcceptReq(token))
             .then((data) => dispatch(feedChange(data.count))),
-        50000
+        100000
       );
     }
 
@@ -75,17 +76,12 @@ const App: React.FC = (props) => {
             </Route>
             {logged ? (
               <Route path="/profile">
-                <div>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Architecto aspernatur aut, dignissimos earum exercitationem
-                  fugit mollitia officiis quae sed voluptates? Enim eveniet ex
-                  explicabo, fugit iste labore non perferendis repudiandae!
-                </div>
+                <ProfilePage />
               </Route>
             ) : null}
             <Route render={() => <Redirect to={{ pathname: '/' }} />} />
           </Switch>
-          <Footer/>
+          <Footer />
         </>
       </Wrapper>
       <AuthFormModal />

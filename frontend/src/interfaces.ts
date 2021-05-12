@@ -88,6 +88,10 @@ export interface User {
   photo: string | null;
 }
 
+export interface UserFull extends User {
+  last_name: string | null;
+}
+
 export interface Review {
   id: number;
   title: string;

@@ -11,6 +11,7 @@
 
   &.not_valid {
     border-color: red;
+    margin-bottom: 0;
   }
 
   &.valid {
@@ -20,4 +21,15 @@
   &:focus {
     outline: none;
   }
+
+  &:disabled {
+    background-color: #999999;
+  }
+}
+
+.error {
+  color: red;
+  font-weight: 500;
+  font-size: 12px;
+  margin-bottom: 10px;
 }

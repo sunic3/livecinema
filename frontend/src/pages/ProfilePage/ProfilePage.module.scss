@@ -1,0 +1,47 @@
+.logout {
+  color: var(--theme-grey-text);
+  text-align: right;
+  font-size: 14px;
+
+  &_span {
+    cursor: pointer;
+    user-select: none;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+
+  @media (max-width: 540px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.left {
+  width: 180px;
+  margin: 0 100px 0 0;
+
+  @media (max-width: 540px) {
+    margin: 0 0 20px 0;
+  }
+}
+
+.avatar {
+  display: block;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 1px solid var(--theme-page-text);
+  width: 180px;
+  height: 180px;
+  margin-bottom: 20px;
+}
+
+.fileInput {
+  width: 180px;
+}
+
+.right {
+  width: 180px;
+}

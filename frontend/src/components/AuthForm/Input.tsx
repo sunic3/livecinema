@@ -13,6 +13,8 @@ type InputProps = {
   onFocus?: () => void;
   isDirty?: boolean;
   valid?: boolean;
+  disabled?: boolean;
+  errorText?: string;
 };
 
 const Input: React.FC<InputProps> = ({
@@ -25,20 +27,26 @@ const Input: React.FC<InputProps> = ({
   onFocus,
   isDirty = false,
   valid = false,
+  disabled = false,
+  errorText,
 }) => (
-  <input
-    type={inputType || 'text'}
-    id={id}
-    name={name}
-    value={value}
-    onFocus={onFocus}
-    onChange={onChange}
-    placeholder={placeholder}
-    className={cn(
-      styles.input,
-      isDirty && (valid ? styles.not_valid : styles.valid)
-    )}
-  />
+  <>
+    <input
+      type={inputType || 'text'}
+      id={id}
+      name={name}
+      value={value}
+      onFocus={onFocus}
+      onChange={onChange}
+      placeholder={placeholder}
+      className={cn(
+        styles.input,
+        isDirty && (valid ? styles.not_valid : styles.valid)
+      )}
+      disabled={disabled}
+    />
+    {isDirty && valid && <h6 className={styles.error}>{errorText}</h6>}
+  </>
 );
 
 export default Input;

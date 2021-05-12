@@ -20,5 +20,6 @@ urlpatterns = [
     path('changefriendship', views.changeFriendship.as_view()),
     path('feeds', views.feedsView.as_view()),
     path('addwatcher', views.addWatcherView.as_view()),
+    path('profile', views.profileView.as_view()),
     path('auth/', include('authentication.urls')),
 ]

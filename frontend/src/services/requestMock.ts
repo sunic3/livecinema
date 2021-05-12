@@ -7,6 +7,7 @@ import {
   GenreType,
   User,
   FeedType,
+  UserFull,
 } from '../interfaces';
 
 import { BACKEND } from '../constants';
@@ -197,4 +198,25 @@ export const addWatcherReq: (
       Authorization: `JWT ${token}`,
     },
     body: JSON.stringify({ movie }),
+  });
+
+export const profileReq: (token: string) => Promise<UserFull> = (token) =>
+  fetchResponse('profile', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `JWT ${token}`,
+    },
+  });
+
+export const updateProfileReq: (
+  token: string,
+  data: FormData
+) => Promise<{ status: string }> = (token, data) =>
+  fetchResponse('profile', {
+    method: 'POST',
+    headers: {
+      Authorization: `JWT ${token}`,
+    },
+    body: data,
   });

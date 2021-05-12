@@ -1,23 +1,22 @@
 import React  from 'react';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 
 import { useDispatch } from 'react-redux';
-import { logout, useAuth } from '../../helpers/authHelper';
+import { useAuth } from '../../helpers/authHelper';
 
 import styles from './Header.module.scss';
 import { openAuthForm } from '../../redux/auth/actions';
 
 const ProfileButton: React.FC = () => {
   const dispatch = useDispatch()
-  // const history = useHistory();
+  const history = useHistory();
 
   const [logged] = useAuth();
 
   const moveToProfile = () => {
-    logout()
-    // history.push('/profile');
+    history.push('/profile');
   };
 
   const openForm = () => {
