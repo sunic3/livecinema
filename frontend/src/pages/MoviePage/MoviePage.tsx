@@ -208,6 +208,7 @@ const MoviePage: React.FC<MoviePageProps> = () => {
                   { ...movie.info.director, ...{ id: 0 } },
                   ...movie.info.actors,
                 ]}
+                movieSlug={movieSlug}
               />
             </div>
           </div>

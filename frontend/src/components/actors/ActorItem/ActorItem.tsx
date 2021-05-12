@@ -14,6 +14,7 @@ const ActorItem: React.FC<ActorItemProps> = ({ actor }) => (
   <div className={styles.actor}>
     <Avatar src={actor.photo} mode="large" />
     <div className={styles.name}>{actor.name}</div>
+    <div className={styles.select} />
   </div>
 );
 
