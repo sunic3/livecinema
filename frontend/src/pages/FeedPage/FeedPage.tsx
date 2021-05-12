@@ -46,6 +46,7 @@ const FeedPage: React.FC = () => {
 
   useEffect(() => {
     dispatch(feedChange(0))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {

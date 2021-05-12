@@ -3,7 +3,7 @@ export const THEME_CHANGE = 'THEME_CHANGE';
 export const LIGHT_THEME = 'light';
 export const DARK_THEME = 'dark';
 
-export const BACKEND = 'https://sunic.pythonanywhere.com';
+export const BACKEND = 'http://127.0.0.1:8000';
 
 // Buttons
 export const BUTTON_TRAILER = 'trailer';
