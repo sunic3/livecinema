@@ -17,7 +17,7 @@ const AddFriend: React.FC<AddFriendProps> = ({ onAdd, onClose, watcher }) => {
     authFetch()
       .then((token) => addFriendReq(watcher.user.username, token))
       .then((data) => {
-        data.status === 'success' && onAdd(watcher);
+        data.status === 'OK' && onAdd(watcher);
         onClose();
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -118,6 +118,10 @@ class UseService(BaseModel):
     money = models.IntegerField(null=True, blank=True, verbose_name='Стоимость')
     link = models.URLField(verbose_name='Ссылка')
 
+    class Meta:
+        verbose_name = 'Где посмотреть'
+        verbose_name_plural = 'Где посмотреть'
+
     def __str__(self):
         return f'{self.service} - {self.movie}'
 

@@ -191,6 +191,8 @@ class AddFriendView(APIView):
 
 	def post(self, request):
 		user = CustomUser.objects.get(username=request.data['username'])
+		if user == request.user:
+			return Response({'status': 'ERROR'}, status=status.HTTP_200_OK)
 
 		try:
 			friends = FriendShip.objects.get(sender=user, dester=request.user)
@@ -200,7 +202,7 @@ class AddFriendView(APIView):
 			friends = FriendShip.objects.create(sender=request.user, dester=user)
 			friends.save()
 
-		return Response(data={'status': 'success'}, status=status.HTTP_200_OK)
+		return Response(data={'status': 'OK'}, status=status.HTTP_200_OK)
 
 
 class SearchView(APIView):
@@ -309,16 +311,7 @@ class profileView(APIView):
 
 	def post(self, request):
 		serializer = CustomUserFullSerializer(request.user, data=request.data)
-		print(request.data)
 		if serializer.is_valid():
-			print('valid')
 			user = serializer.save()
-			print(user)
-		# user.first_name = request.data['first_name']
-		# user.last_name = request.data['last_name']
-		# if 'avatar' in request.data:
-		# 	user.photo = request.data['avatar']
-		# user.save()
-		else:
-			print('not valid')
-		return Response({'status': 'OK'}, status=status.HTTP_200_OK)
+			return Response({'status': 'OK'}, status=status.HTTP_200_OK)
+		return Response({'status': 'ERROR'}, status=status.HTTP_400_BAD_REQUEST)

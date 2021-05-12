@@ -25,7 +25,7 @@ const WatcherItems: React.FC<WatcherItemsProps> = ({ slug }) => {
         (err) => (err.message === 'no token' ? getWatchersReq(slug) : err)
       )
       .then((data) => setWatchers(data))
-      .catch((err) => {});
+      .catch(() => {});
   }, [slug, logged]);
 
   const addFriend = (watcher: Watcher) => {

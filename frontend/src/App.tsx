@@ -43,7 +43,7 @@ const App: React.FC = (props) => {
           authFetch()
             .then((token) => friendsNotAcceptReq(token))
             .then((data) => dispatch(feedChange(data.count))),
-        100000
+        1000
       );
     }
 
