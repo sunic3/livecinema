@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 
@@ -98,7 +99,7 @@ const FeedItem: React.FC<FeedItemProps> = ({
       {type === 'review' && (
         <div className={styles.content}>
           {reviewShow ? (
-            <div className={styles.review}>{content}</div>
+            <ReactMarkdown className={styles.review}>{content}</ReactMarkdown>
           ) : (
             <div
               className={styles.reviewShow}

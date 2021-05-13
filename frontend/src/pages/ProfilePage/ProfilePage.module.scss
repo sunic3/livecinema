@@ -25,6 +25,8 @@
 
   @media (max-width: 540px) {
     margin: 0 0 20px 0;
+    width: 100%;
+    max-width: 300px;
   }
 }
 
@@ -36,12 +38,28 @@
   width: 180px;
   height: 180px;
   margin-bottom: 20px;
+
+  @media (max-width: 540px) {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+  }
 }
 
 .fileInput {
   width: 180px;
+
+  @media (max-width: 540px) {
+    width: 100%;
+    max-width: 300px;
+  }
 }
 
 .right {
   width: 180px;
+
+  @media (max-width: 540px) {
+    width: 100%;
+    max-width: 300px;
+  }
 }

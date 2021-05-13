@@ -30,6 +30,10 @@
   margin-right: 5px;
 }
 
+.text {
+  color: var(--theme-page-text);
+}
+
 .buttons {
   display: flex;
   flex-direction: row;
